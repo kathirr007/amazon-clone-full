@@ -20,12 +20,12 @@
           </b-form>
           <b-card class="my-3" header="Available Categories">
             <b-list-group class="categories-list">
-              <b-list-group-item class="text-capitalize" v-for="category in categories" :key="category._id">
+              <b-list-group-item class="text-capitalize" v-for="(category, index) in categories" :key="category._id">
                 {{ category.type }}
                 <span class="tags float-right">
-                  <nuxt-link class="badge badge-primary" :to="`/instructor/category/${category._id}`" variant="info">Update</nuxt-link>
+                  <!-- <nuxt-link class="badge badge-primary" :to="`/admin/category/${category._id}`" variant="info">Update</nuxt-link> -->
                   <!-- <span class="tag is-info">Update</span> -->
-                  <span class="badge badge-danger" @click="confirmDeletion(category._id, 'category', category.type)">Delete</span>
+                  <span class="badge badge-danger" @click="confirmDeletion(category._id, index, category.type)">Delete</span>
                 </span>
               </b-list-group-item>
             </b-list-group>
@@ -76,6 +76,8 @@
         console.log(`The new category ${this.categoryType} is added successfully...`)
 
         if(result.status) {
+          data._id = result.catAdded._id
+          console.log(result.catAdded)
           this.categories.push(data)
         }
         this.makeToast('category', data.type, 'add')

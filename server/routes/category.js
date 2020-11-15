@@ -9,10 +9,12 @@ router.post('/categories', async (req, res) => {
         let category = new Category()
         category.type = req.body.type
 
-        await category.save()
+        let newCategory = await category.save()
+        // let newCategory = await category.insertOne()
 
         res.json({
             status: true,
+            catAdded: newCategory,
             message: 'Category is created Successfully...'
         })
     } catch(err) {
