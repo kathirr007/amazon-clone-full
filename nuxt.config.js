@@ -26,19 +26,37 @@ module.exports = {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/png', href: '/icon.png' },
+      { rel: 'stylesheet', href: '/css/font-awesome/css/all.css' },
+      { rel: 'stylesheet', href: '/css/default.css' },
     ]
   },
+  /*
+    ** Customize the progress-bar color
+    */
+  loading: { color: '#f0c14b' },
   /*
   ** Global CSS
   */
   css: [
+    '@/assets/scss/main.scss'
   ],
+  /* Style resources */
+/*   styleResources: {
+    // your settings here
+    sass: [],
+    scss: [
+        '@assets/scss/variables.scss'
+    ],
+    less: [],
+    stylus: []
+  }, */
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    { src: './plugins/vue-carousel.min.js', mode: 'client' }
   ],
   /*
   ** Auto import components
@@ -54,8 +72,13 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    // Doc: https://bootstrap-vue.js.org
+    'bootstrap-vue/nuxt',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/pwa',
+    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv',
   ],
   /*
   ** Axios module configuration
@@ -74,5 +97,9 @@ module.exports = {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    /*
+      ** You can extend webpack config here
+      */
+    extend(config, ctx) {}
   }
 }
