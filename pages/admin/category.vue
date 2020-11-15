@@ -25,7 +25,7 @@
                 <span class="tags float-right">
                   <nuxt-link class="badge badge-primary" :to="`/instructor/category/${category._id}`" variant="info">Update</nuxt-link>
                   <!-- <span class="tag is-info">Update</span> -->
-                  <span class="badge badge-danger" @click="confirmDeletion($event, 'category', category)">Delete</span>
+                  <span class="badge badge-danger" @click="confirmDeletion(category._id, 'category', category.type)">Delete</span>
                 </span>
               </b-list-group-item>
             </b-list-group>
@@ -78,11 +78,11 @@
         if(result.status) {
           this.categories.push(data)
         }
-        this.makeToast()
+        this.makeToast('category', data.type, 'add')
         this.resetCategoryForm()
         // this.$router.push('/')
       },
-      makeToast(append = false) {
+      /* makeToast(append = false) {
         // Use a shorter name for this.$createElement
         const h = this.$createElement
         // Increment the toast count
@@ -104,6 +104,20 @@
           appendToast: append,
           variant: 'info'
         })
+      }, */
+      async onDeleteProduct(id, index, title) {
+        try {
+          // let productTitle = this.products[index].title
+          // debugger
+          let response = await this.$axios.$delete(`/api/categories/${id}`)
+          // console.log(response.products)
+          this.makeToast('category', title, 'delete')
+          if(response.status) {
+            this.categories.splice(index, 1)
+          }
+        } catch (err) {
+          console.log(err)
+        }
       }
     }
   };

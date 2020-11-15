@@ -43,6 +43,23 @@ router.get('/categories', async(req,res) => {
 
 // PUT request - Update a single product
 
-// DELETE request - delete a single product
+
+// DELETE request - delete a single category
+router.delete('/categories/:id', async(req,res) => {
+  try {
+      let deletedCategory = await Category.findOneAndDelete({ _id: req.params.id })
+      if(deletedCategory) {
+          res.json({
+              status: true,
+              message: "Category is successfully deleted..."
+          })
+      }
+  } catch(err) {
+      res.status(500).json({
+          success: false,
+          message: err.message
+      })
+  }
+})
 
 module.exports = router

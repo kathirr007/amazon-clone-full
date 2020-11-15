@@ -36,7 +36,7 @@ export default {
       })
       .then(value => {
           if (value == true) {
-            debugger
+            // debugger
             this.onDeleteProduct(id, index, title)
           } else {
             return
