@@ -1,10 +1,14 @@
-
-export default {
+module.exports = {
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
   */
-  mode: 'universal',
+  server: {
+    // port: 3100, // default 3000
+    port: process.env.PORT || 4400,
+  },
+  // mode: 'universal',
+  telemetry: false,
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -57,7 +61,14 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+ axios: {
+    baseURL: process.env.BASE_URL || `http://localhost:4400`
+  },
+  /* server Middleware */
+  serverMiddleware: [
+    '~/server/routes/index'
+  ],
+  /* server Middleware end */
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/

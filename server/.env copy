@@ -1,0 +1,8 @@
+DATABASEURI=mongodb+srv://root:kathirr123@amazon-clone-kfpkw.mongodb.net/test?retryWrites=true&w=majority
+AWSAccessKeyId=AKIAJA7TGOUSGAQFINLA
+AWSSecretKey=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
+SECRET=iloveyousomuchmydearopndatti!@##@!
+STRIPE_SECRET_KEY=sk_test_4DU6E13HNbn5cUvLcNfFqYNl00nWDa4ZdQ
+ALGOLIA_SECRET=04b600a1972c495b8ae55278869125f0
+ALGOLIA_APP_ID=IB0O6C7X0X
+ALGOLIA_INDEX=amazon-clone-full

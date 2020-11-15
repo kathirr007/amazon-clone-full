@@ -1,58 +1,34 @@
 const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const cors = require('cors');
+const config = require('../nuxt.config.js')
+const { Nuxt, Builder } = require('nuxt')
 
-const User = require('./models/user')
-
-dotenv.config()
+// dotenv.config()
 
 const app = express()
 
-debugger
-mongoose.connect(process.env.DATABASEURI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
-err => {
-    if(err) {
-        console.log(err)
-    } else {
-        console.log('Connected to the database')
-    }
-})
+config.dev = !(process.env.NODE_ENV === 'production')
 
-// Middlewares
-app.use(morgan('dev'))
-app.use(cors())
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+async function start() {
+  // Init Nuxt.js
+  const nuxt = new Nuxt(config)
+  const { host, port } = nuxt.options.server
 
-// require APIs
-const productRoutes = require('./routes/product')
-const categoryRoutes = require('./routes/category')
-const ownerRoutes = require('./routes/owner')
-const userRoutes = require('./routes/auth')
-const reviewRoutes = require('./routes/review')
-const addressRoutes = require('./routes/address')
-const paymentRoutes = require('./routes/payment')
-const orderRoutes = require('./routes/order')
-const searchRoutes = require('./routes/search')
+  // Build only in dev mode
+  if (config.dev) {
+    const builder = new Builder(nuxt)
+    await builder.build()
+  } else {
+    await nuxt.ready()
+  }
 
-app.use('/api', productRoutes)
-app.use('/api', categoryRoutes)
-app.use('/api', ownerRoutes)
-app.use('/api', userRoutes)
-app.use('/api', reviewRoutes)
-app.use('/api', addressRoutes)
-app.use('/api', paymentRoutes)
-app.use('/api', orderRoutes)
-app.use('/api', searchRoutes)
+  // Give nuxt middleware to express
+  app.use(nuxt.render)
 
-
-app.listen(4004, err => {
-    if(err) {
-        console.log(err)
-    } else {
-        console.log('Listening on PORT', 4004)
-    }
-})
+  // Listen the server
+  app.listen(port, host)
+  consola.ready({
+    message: `Server listening on http://${host}:${port}`,
+    badge: true
+  })
+}
+start()
