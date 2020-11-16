@@ -41,7 +41,7 @@
               <b-list-group-item class="text-capitalize" v-for="(owner, index) in owners" :key="owner._id">
                 {{ owner.name }}
                 <b-badge href="#" class="float-right" @click.prevent="confirmDeletion(owner._id, index, owner.name)" variant="danger">Delete</b-badge>
-                <nuxt-link class="badge badge-info float-right mr-2" :to="`/owners/${owner._id}`" variant="info">Update</nuxt-link>
+                <nuxt-link class="badge badge-info float-right mr-2" :to="`/admin/owners/${owner._id}`" variant="info">Update</nuxt-link>
               </b-list-group-item>
             </b-list-group>
           </b-card>
@@ -56,6 +56,7 @@
   import imgUploadMixin from '~/mixins/imgUpload'
   import deleteConfirmationMixin from '~/mixins/deleteConfirmation'
   export default {
+    layout: 'admin',
     transition(to, from) {
       if (!from) {
         return 'slide-left'
@@ -68,8 +69,8 @@
     mixins: [infoToastMixin, imgUploadMixin, deleteConfirmationMixin],
     async asyncData({ $axios }) {
       try {
-        let res = await $axios.$get('http://localhost:4004/api/owners')
-        // let owners = $axios.$get('http://localhost:4004/api/owners')
+        let res = await $axios.$get('/api/owners')
+        // let owners = $axios.$get('/api/owners')
 
         return {
           owners: res.owners,
@@ -117,7 +118,7 @@
         data.append('about', this.about)
         data.append('photo', this.images[0])
 
-        let result = await this.$axios.$post('http://localhost:4004/api/owners', data)
+        let result = await this.$axios.$post('/api/owners', data)
         console.log(`The new owner ${this.name} is added successfully...`)
 
 
@@ -137,7 +138,7 @@
         try {
           // let productTitle = this.products[index].title
           debugger
-          let response = await this.$axios.$delete(`http://localhost:4004/api/owners/${id}`)
+          let response = await this.$axios.$delete(`/api/owners/${id}`)
           // console.log(response.products)
           debugger
           this.makeToast('owner', title, 'delete')

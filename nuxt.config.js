@@ -20,6 +20,9 @@ module.exports = {
   */
   head: {
     title: process.env.npm_package_name || '',
+    script: [
+      {src: 'https://js.stripe.com/v3'}
+    ],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -56,7 +59,10 @@ module.exports = {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    { src: './plugins/vue-carousel.min.js', mode: 'client' }
+    {src: '~/plugins/filters'},
+    {src: '~/plugins/localStorage', ssr: false},
+    { src: './plugins/vue-carousel.min.js', mode: 'client' },
+    { src: './plugins/vueStarRating', mode: 'client' }
   ],
   /*
   ** Auto import components
@@ -79,6 +85,10 @@ module.exports = {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    // Doc: https://auth.nuxtjs.org/
+    '@nuxtjs/auth',
+    // Doc: https://github.com/nuxt-community/proxy-module
+    // '@nuxtjs/proxy',
   ],
   /*
   ** Axios module configuration
@@ -101,5 +111,17 @@ module.exports = {
       ** You can extend webpack config here
       */
     extend(config, ctx) {}
+  },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            propertName: 'token'
+          },
+          logout: true
+        }
+      }
+    }
   }
 }

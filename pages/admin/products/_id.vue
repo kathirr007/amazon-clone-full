@@ -113,6 +113,7 @@
   import infoToastMixin from '~/mixins/infoToast'
   import imgUploadMixin from '~/mixins/imgUpload'
   export default {
+    layout: 'admin',
     async asyncData({ $axios, params }) {
       try {
         let categories = $axios.$get('/api/categories')

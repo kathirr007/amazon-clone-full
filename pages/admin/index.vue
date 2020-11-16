@@ -141,6 +141,7 @@ import deleteConfirmationMixin from '~/mixins/deleteConfirmation'
 // import { Carousel, Slide } from 'vue-carousel';
 
 export default {
+  layout: 'admin',
   head: {
     title: 'Home'
   },

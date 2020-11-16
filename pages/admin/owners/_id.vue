@@ -68,6 +68,7 @@
   import infoToastMixin from '~/mixins/infoToast'
   import imgUploadMixin from '~/mixins/imgUpload'
   export default {
+    layout: 'admin',
     transition(to, from) {
       if (!from) {
         return 'slide-left'
@@ -76,9 +77,9 @@
     },
     async asyncData({ $axios, params }) {
       try {
-        // let categories = $axios.$get('http://localhost:4004/api/categories')
-        // let owners = $axios.$get('http://localhost:4004/api/owners')
-        let owner = $axios.$get(`http://localhost:4004/api/owners/${params.id}`)
+        // let categories = $axios.$get('/api/categories')
+        // let owners = $axios.$get('/api/owners')
+        let owner = $axios.$get(`/api/owners/${params.id}`)
 
         const [ownerResponse] = await Promise.all([
           owner
@@ -147,7 +148,7 @@
         // data.append('prodImages', this.selectedFiles)
         // debugger
 
-        let result = await this.$axios.$put(`http://localhost:4004/api/owners/${this.$route.params.id}`, data)
+        let result = await this.$axios.$put(`/api/owners/${this.$route.params.id}`, data)
         console.log(`The product ${this.owner.name} is updated successfully...`)
         // this.$refs.imagesInput.reset()
         // this.$refs.productForm.reset()

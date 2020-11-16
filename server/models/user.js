@@ -6,7 +6,8 @@ const UserSchema = new Schema({
     name: String,
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true, },
-    address: { type: Schema.Types.ObjectId, ref: "Address" }
+    address: { type: Schema.Types.ObjectId, ref: "Address" },
+    admin: {type: Boolean, default: false}
 })
 
 UserSchema.pre('save', function(next) {

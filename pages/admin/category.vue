@@ -40,6 +40,7 @@
   import infoToastMixin from '~/mixins/infoToast'
   import deleteConfirmationMixin from '~/mixins/deleteConfirmation'
   export default {
+    layout: 'admin',
     head: {
       title: 'Add a new category'
     },

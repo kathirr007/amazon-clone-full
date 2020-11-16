@@ -26,6 +26,7 @@
 
 <script>
   export default {
+    layout: 'admin',
     /*
       Defines the data used by the component
     */

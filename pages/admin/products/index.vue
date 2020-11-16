@@ -99,6 +99,7 @@
 import infoToastMixin from '~/mixins/infoToast'
 import imgUploadMixin from '~/mixins/imgUpload'
   export default {
+    layout: 'admin',
     transition(to, from) {
       if (!from) {
         return 'slide-left'
