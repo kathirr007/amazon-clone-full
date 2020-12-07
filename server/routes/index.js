@@ -16,7 +16,7 @@ dotenv.config()
 
 const app = express()
 
-debugger
+// debugger
 mongoose.connect(process.env.DATABASEURI, err => {
   if(err) {
       console.log(err)

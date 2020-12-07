@@ -177,6 +177,7 @@
         }
       },
       async onUpdateProduct() {
+        debugger
         let data = new FormData()
         // let $that = this
         /* this.mergedFiles.forEach((item, i) => {

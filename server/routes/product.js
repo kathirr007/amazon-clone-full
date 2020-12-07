@@ -5,7 +5,7 @@ const {upload} = require('../middlewares/upload-photo')
 
 // POST request - create a new product
 router.post('/products', upload.array('prodImages', 3), async (req, res) => {
-    // debugger
+    debugger
     try {
         let prodImages = req.files.map((file) => {
             return {
@@ -92,6 +92,7 @@ router.get('/products/:id', async(req,res) => {
 
 // PUT request - Update a single product
 router.put("/products/:id", upload.array("prodImages"), async (req, res) => {
+  debugger
   try {
     let prodImages = req.files? req.files.map((file) => {
         return {
