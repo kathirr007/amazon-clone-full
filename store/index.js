@@ -3,59 +3,59 @@ export const state = () => ({
   cart: [],
   cartLength: 0,
   shippingPrice: 0,
-  shippingEstimatedDelivery: ''
-})
+  shippingEstimatedDelivery: ""
+});
 
 export const actions = {
   addProductToCart({ state, commit }, product) {
-    const cartProduct = state.cart.find(prod => prod._id === product._id)
+    const cartProduct = state.cart.find(prod => prod._id === product._id);
 
-    if(!cartProduct) {
-      commit('pushProductToCart', product)
+    if (!cartProduct) {
+      commit("pushProductToCart", product);
     } else {
-      commit('incrementProductQty', cartProduct)
+      commit("incrementProductQty", cartProduct);
     }
 
-    commit('incrementCartLength')
+    commit("incrementCartLength");
   }
-}
+};
 
 export const mutations = {
   pushProductToCart(state, product) {
-    product.quantity = 1
-    state.cart.push(product)
+    product.quantity = 1;
+    state.cart.push(product);
   },
   incrementProductQty(state, product) {
-    product.quantity++
-    let indexOfProduct = state.cart.indexOf(product)
-    state.cart.splice(indexOfProduct, 1, product)
+    product.quantity++;
+    let indexOfProduct = state.cart.indexOf(product);
+    state.cart.splice(indexOfProduct, 1, product);
   },
   incrementCartLength(state) {
-    state.cartLength = 0
-    if(state.cart.length > 0) {
-      state.cart.map(product => state.cartLength += product.quantity)
+    state.cartLength = 0;
+    if (state.cart.length > 0) {
+      state.cart.map(product => (state.cartLength += product.quantity));
     }
   },
 
-/*
+  /*
 1. Find the product in the cart
 2. Change the quantity of the product
 3. Update the length of the cart
 4. Replace the old product with the updated product
  */
 
-  changeQty(state, {product, qty}) {
+  changeQty(state, { product, qty }) {
     // debugger
-    let cartProduct = state.cart.find(prod => prod._id === product._id)
-    cartProduct.quantity = qty
+    let cartProduct = state.cart.find(prod => prod._id === product._id);
+    cartProduct.quantity = qty;
 
-    state.cartLength = 0
-    if(state.cart.length > 0) {
-      state.cart.map(product => state.cartLength += product.quantity)
+    state.cartLength = 0;
+    if (state.cart.length > 0) {
+      state.cart.map(product => (state.cartLength += product.quantity));
     }
 
-    let indexOfProduct = state.cart.indexOf(cartProduct)
-    state.cart.splice(indexOfProduct, 1, cartProduct)
+    let indexOfProduct = state.cart.indexOf(cartProduct);
+    state.cart.splice(indexOfProduct, 1, cartProduct);
   },
   /*
   1. Remove the product quantity from the cartLength
@@ -63,46 +63,60 @@ export const mutations = {
   3. Remove that product by using the splice
   */
   removeProduct(state, product) {
-    state.cartLength -= product.quantity
-    let indexOfProduct = state.cart.indexOf(product)
-    state.cart.splice(indexOfProduct, 1)
+    state.cartLength -= product.quantity;
+    let indexOfProduct = state.cart.indexOf(product);
+    state.cart.splice(indexOfProduct, 1);
   },
-  setShipping(state, {price, estimatedDelivery}) {
-    state.shippingPrice = price
-    state.shippingEstimatedDelivery = estimatedDelivery
+  setShipping(state, { price, estimatedDelivery }) {
+    state.shippingPrice = price;
+    state.shippingEstimatedDelivery = estimatedDelivery;
   },
   clearCart(state) {
-    state.cart = []
-    state.cartLength = 0
-    state.shippingPrice = 0
-    state.shippingEstimatedDelivery = ''
+    state.cart = [];
+    state.cartLength = 0;
+    state.shippingPrice = 0;
+    state.shippingEstimatedDelivery = "";
   }
-}
+};
 
 export const getters = {
   getCartLength(state) {
-    return state.cartLength
+    return state.cartLength;
   },
   getCart(state) {
-    return state.cart
+    return state.cart;
   },
   getCartTotalPrice(state) {
-    let total = 0
+    let total = 0;
     state.cart.map(product => {
-      total += product.price * product.quantity
-    })
+      total += product.price * product.quantity;
+    });
 
-    return total
+    return total;
   },
   getCartTotalPriceWithShipping(state) {
-    let total = 0
+    let total = 0;
     state.cart.map(product => {
-      total += product.price * product.quantity
-    })
+      total += product.price * product.quantity;
+    });
 
-    return total + state.shippingPrice
+    return total + state.shippingPrice;
   },
   getEstimatedDelivery(state) {
-    return state.shippingEstimatedDelivery
+    return state.shippingEstimatedDelivery;
+  },
+  authUser(state) {
+    return state.user || null;
+  },
+  isAuthenticated(state) {
+    /* if (state.user) {
+            return true
+        } else {
+            return false
+        } */
+    return !!state.user;
+  },
+  isAdmin(state) {
+    return state.user && state.user.role && state.user.role === "admin";
   }
-}
+};
