@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import StarsRatings from 'vue-star-rating';
+import Vue from "vue";
+import StarRating from "vue-star-rating";
 
-Vue.component('StarsRatings', StarsRatings);
+Vue.component("StarRating", StarRating);

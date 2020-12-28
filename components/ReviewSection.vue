@@ -16,14 +16,22 @@
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i> -->
+            <i class="fas fa-star-half-alt"></i>-->
             <span>
               <a href="#">
                 <client-only>
-                  <star-rating :inline="true" :increment="0.5" :rating="product.averageRating" :show-rating="false" :glow="1" :border-width="1"
-                    :rounded-corners="true" :read-only="true" :star-size="18"
-                    :star-points="[23,2,14,17,0,19,10,34,7,50,23,43,38,50,36,34,46,19,31,17]">
-                  </star-rating>
+                  <star-rating
+                    :inline="true"
+                    :increment="0.5"
+                    :rating="product.averageRating"
+                    :show-rating="false"
+                    :glow="1"
+                    :border-width="1"
+                    :rounded-corners="true"
+                    :read-only="true"
+                    :star-size="18"
+                    :star-points="[23,2,14,17,0,19,10,34,7,50,23,43,38,50,36,34,46,19,31,17]"
+                  ></star-rating>
                 </client-only>
                 {{product.averageRating}} out of 5 stars
                 <i class="a-icon a-icon-popover"></i>
@@ -158,7 +166,10 @@
             <!-- Link to another Review page -->
             <span class="a-button-base writeReviewButton cm-cr-button-wide">
               <span class="a-button-inner">
-                <nuxt-link :to="`/reviews/${product._id}`" class="a-button-text">Write a customer review</nuxt-link>
+                <nuxt-link
+                  :to="`/reviews/${product._id}`"
+                  class="a-button-text"
+                >Write a customer review</nuxt-link>
               </span>
             </span>
           </div>
@@ -173,7 +184,13 @@
             <h3>Customer images</h3>
             <!-- Review Images -->
             <div class="a-spacing-small a-spacing-top-small">
-              <img class="img-fluid" width="22.5%" v-for="review in reviews" :key="review._id" :src="review.photo" />
+              <img
+                class="img-fluid"
+                width="22.5%"
+                v-for="review in reviews"
+                :key="review._id"
+                :src="review.photo"
+              />
             </div>
             <div>
               <a href="#">See all customer images</a>
@@ -256,9 +273,11 @@
             <div class="card-padding">
               <div class="review-header">
                 <h3>
-                  <span class="a-size-base">Showing 1-8 of
+                  <span class="a-size-base">
+                    Showing 1-8 of
                     {{product.reviews.length}}
-                    reviews</span>
+                    reviews
+                  </span>
                 </h3>
               </div>
               <div class="review-sort-type">
@@ -294,10 +313,18 @@
                   <a href="#">
                     <!-- <template v-if="review.rating"></template> -->
                     <client-only>
-                      <star-rating :read-only="true" :inline="true" :show-rating="false" :rating="review.rating" :increment="0.5" :star-size="15" :rounded-corners="true" :padding="1"></star-rating>
+                      <star-rating
+                        :read-only="true"
+                        :inline="true"
+                        :show-rating="false"
+                        :rating="review.rating"
+                        :increment="0.5"
+                        :star-size="15"
+                        :rounded-corners="true"
+                        :padding="1"
+                      ></star-rating>
                     </client-only>
                     <!-- <i class="fas fa-star" v-for="i in review.rating" :key="i"></i> -->
-
                   </a>
                   <span class="a-letter-space"></span>
                   <!-- Review Headline -->
@@ -337,7 +364,11 @@
             <div class="a-row">
               <span class="a-button a-button-base writeReviewButton" id="a-autoid-15">
                 <span class="a-button-inner">
-                  <nuxt-link :to="`/reviews/${product._id}`" class="a-button-text" role="button">Write a customer review</nuxt-link>
+                  <nuxt-link
+                    :to="`/reviews/${product._id}`"
+                    class="a-button-text"
+                    role="button"
+                  >Write a customer review</nuxt-link>
                 </span>
               </span>
             </div>
@@ -350,20 +381,20 @@
 </template>
 
 <script>
-import StarRating from 'vue-star-rating'
+// import StarRating from 'vue-star-rating'
 
 export default {
-  props: ['product', 'reviews'],
+  props: ["product", "reviews"],
   components: {
-    StarRating
-  }
+    // StarRating
+  },
 };
 </script>
 
 <style lang="scss">
-.vue-star-rating-inline {
+/* .vue-star-rating-inline {
   .vue-star-rating-star {
     margin-top: -5px;
   }
-}
+} */
 </style>

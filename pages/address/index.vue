@@ -27,7 +27,7 @@
               <!-- Message from Server -->
               <!-- <div class="a-section a-spacing-none a-spacing-top-small">
                 <b>{{message}}</b>
-              </div> -->
+              </div>-->
               <div class="a-spacing-double-large">
                 <div class="row a-spacing-micro">
                   <div class="col-lg-4 col-md-5 col-sm-12 pb-2">
@@ -45,7 +45,11 @@
                     </nuxt-link>
                   </div>
                   <!-- Address -->
-                  <div class="col-lg-4 col-md-4 col-sm-12 pl-md-0 pb-2" v-for="(address, index) in addresses" :key="address._id">
+                  <div
+                    class="col-lg-4 col-md-4 col-sm-12 pl-md-0 pb-2"
+                    v-for="(address, index) in addresses"
+                    :key="address._id"
+                  >
                     <div class="a-box a-spacing-none normal-desktop-address-tile">
                       <div class="a-box-inner a-padding-none">
                         <div class="address-section-no-default">
@@ -72,12 +76,18 @@
                       <div class="edit-address-desktop-link">
                         <!-- Edit/Update Button -->
                         <nuxt-link :to="`/address/${address._id}`">Edit</nuxt-link>
-                        &nbsp; | &nbsp;
+                        <span class="mx-2">|</span>
                         <!-- Delete Button -->
-                        <a href="#" @click.prevent="confirmDeletion(address._id, index, address.fullName)">Delete</a>
-                        &nbsp; | &nbsp;
+                        <a
+                          href="#"
+                          @click.prevent="confirmDeletion(address._id, index, address.fullName)"
+                        >Delete</a>
+                        <span class="mx-2">|</span>
                         <!-- Set Address as Default -->
-                        <a href="#" @click.prevent="onSetDefault(address._id, address.fullName)">Set as Default</a>
+                        <a
+                          href="#"
+                          @click.prevent="onSetDefault(address._id, address.fullName)"
+                        >Set as Default</a>
                       </div>
                     </div>
                   </div>
@@ -95,36 +105,36 @@
 </template>
 
 <script>
-import infoToastMixin from '~/mixins/infoToast'
-import deleteConfirmationMixin from '~/mixins/deleteConfirmation'
+import infoToastMixin from "~/mixins/infoToast";
+import deleteConfirmationMixin from "~/mixins/deleteConfirmation";
 
 export default {
   transition(to, from) {
     if (!from) {
-      return 'slide-left'
+      return "slide-left";
     }
-    return 'slide-right'
+    return "slide-right";
   },
   head() {
     return {
-      title: 'Addresses List'
-    }
+      title: "Addresses List",
+    };
   },
-  async asyncData({$axios}) {
+  async asyncData({ $axios }) {
     try {
-      let response = await $axios.$get('/api/addresses')
+      let response = await $axios.$get("/api/addresses");
       // console.log(response.addresses)
       return {
-        addresses: response.addresses
-      }
-    } catch(err) {
-      console.log(err)
+        addresses: response.addresses,
+      };
+    } catch (err) {
+      console.log(err);
     }
   },
   data() {
     return {
       // message: ''
-    }
+    };
   },
   mixins: [infoToastMixin, deleteConfirmationMixin],
   methods: {
@@ -132,37 +142,39 @@ export default {
       try {
         // let productTitle = this.products[index].title
         // debugger
-        let response = await this.$axios.$delete(`/api/addresses/${id}`)
+        let response = await this.$axios.$delete(`/api/addresses/${id}`);
         // console.log(response.products)
-        this.makeToast('address', title, 'delete')
-        if(response.success) {
+        this.makeToast("address", title, "delete");
+        if (response.success) {
           // this.message = response.message
-          this.addresses.splice(index, 1)
+          this.addresses.splice(index, 1);
         }
       } catch (err) {
         // this.message = err.message
-        console.log(err)
+        console.log(err);
       }
     },
     async onSetDefault(id, title) {
       try {
-        debugger
-        let response = await this.$axios.$put(`/api/addresses/set/default`, { id: id })
-        debugger
+        debugger;
+        let response = await this.$axios.$put(`/api/addresses/set/default`, {
+          id: id,
+        });
+        debugger;
         if (response.success) {
-          debugger
+          debugger;
           // this.message = response.message
 
-          await this.$auth.fetchUser()
-          this.makeToast('address', title, 'setdefault')
+          await this.$auth.fetchUser();
+          this.makeToast("address", title, "setdefault");
         }
-      } catch(err) {
+      } catch (err) {
         // this.message = err.message
-        console.log(err)
+        console.log(err);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 

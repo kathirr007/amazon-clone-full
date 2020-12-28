@@ -10,9 +10,7 @@
             </span>
           </li>
           <li>
-            <span class="a-list-item">
-              >
-            </span>
+            <span class="a-list-item">></span>
           </li>
           <li>
             <span class="a-list-item">
@@ -37,10 +35,8 @@
 
               <!-- Follow Author -->
               <div class="authorFollow">
-                <hr class="a-divider-normal">
-                <h1 class="authorFollowHeading">
-                  Follow The Author
-                </h1>
+                <hr class="a-divider-normal" />
+                <h1 class="authorFollowHeading">Follow The Author</h1>
                 <div class="mt-2">
                   <div class="row">
                     <!-- Author's Image -->
@@ -89,15 +85,25 @@
                 by
                 <a href="#" class="authorName">
                   {{ product.owner.name }}
-                  <i class="fas fa-chevron-down" style="font-size: 8px !important; color #555 !important;"></i>
+                  <i
+                    class="fas fa-chevron-down"
+                    style="font-size: 8px !important; color #555 !important;"
+                  ></i>
                 </a> (Author)
               </div>
               <div class="reviewGroup border-bottom pb-2">
                 <client-only>
-                  <star-rating :increment="0.5" :rating="product.averageRating" :show-rating="false" :glow="1" :border-width="1"
-                    :rounded-corners="true" :read-only="true" :star-size="18"
-                    :star-points="[23,2,14,17,0,19,10,34,7,50,23,43,38,50,36,34,46,19,31,17]">
-                  </star-rating>
+                  <star-rating
+                    :increment="0.5"
+                    :rating="product.averageRating"
+                    :show-rating="false"
+                    :glow="1"
+                    :border-width="1"
+                    :rounded-corners="true"
+                    :read-only="true"
+                    :star-size="18"
+                    :star-points="[23,2,14,17,0,19,10,34,7,50,23,43,38,50,36,34,46,19,31,17]"
+                  ></star-rating>
                 </client-only>
               </div>
               <!-- A tags Dummy data -->
@@ -115,7 +121,7 @@
                           <span class="a-button-inner">
                             <a href="#" class="a-button-text">
                               <span>Kindle</span>
-                              <br>
+                              <br />
                               <span class="a-color-secondary">-</span>
                             </a>
                           </span>
@@ -139,8 +145,10 @@
                         <span class="a-button-toggle">
                           <span class="a-button-inner">
                             <a href="#" class="a-button-text">
-                              <span><b-img src="/img/audiblelogo.png" fluid style="width: 20px;"></b-img>Audible</span>
-                              <br>
+                              <span>
+                                <b-img src="/img/audiblelogo.png" fluid style="width: 20px;"></b-img>Audible
+                              </span>
+                              <br />
                               <span class="a-color-secondary">-</span>
                             </a>
                           </span>
@@ -164,7 +172,7 @@
                           <span class="a-button-inner">
                             <a href="#" class="a-button-text">
                               <span>Paperback</span>
-                              <br>
+                              <br />
                               <span class="a-color-secondary">-</span>
                             </a>
                           </span>
@@ -181,11 +189,17 @@
 
               <!-- Product Specification -->
               <div class="aboutEbooksFeature">
-                <hr>
+                <hr />
                 <div class="row">
                   <b-col col sm="4" mb-1>
                     <div class="a-declarative">
-                      Length: <span><a href="#">386 pages <i class="a-icon a-icon-popover"></i></a></span>
+                      Length:
+                      <span>
+                        <a href="#">
+                          386 pages
+                          <i class="a-icon a-icon-popover"></i>
+                        </a>
+                      </span>
                     </div>
                   </b-col>
                 </div>
@@ -199,7 +213,7 @@
                 <div class="a-section">
                   <div class="clearfix">
                     <div class="float-left">
-                      <form >
+                      <form>
                         <input type="radio" id="test1" name="radio-group checked" />
                         <label for="test1">Buy Now</label>
                       </form>
@@ -207,9 +221,9 @@
 
                     <!-- Product Price -->
                     <div class="float-right">
-                      <span class="a-size-medium a-color-price offer-price a-text-normal">
-                        ${{ product.price }}
-                      </span>
+                      <span
+                        class="a-size-medium a-color-price offer-price a-text-normal"
+                      >${{ product.price }}</span>
                     </div>
                   </div>
                 </div>
@@ -217,7 +231,7 @@
                 <div class="a-section a-spacing-none">
                   <div class="row">
                     <b-col cols="5" sm="5">
-                      <select name="" id="">
+                      <select name id>
                         <option value="1">Qty: 1</option>
                         <option value="2">Qty: 2</option>
                         <option value="3">Qty: 3</option>
@@ -235,9 +249,7 @@
 
                 <div class="a-section a-spacing-small a-spacing-top-micro">
                   <div class="row">
-                    <span class="a-color-base buyboxShippingLabel">
-
-                    </span>
+                    <span class="a-color-base buyboxShippingLabel"></span>
                   </div>
                 </div>
                 <div class="a-section a-spacing-small">
@@ -252,7 +264,7 @@
                     <span class="a-spacing-small a-button-primary a-button-icon">
                       <span class="a-button-inner">
                         <i class="a-icon a-icon-cart"></i>
-                        <input type="submit" name="submit.add-to-card" class="a-button-input">
+                        <input type="submit" name="submit.add-to-card" class="a-button-input" />
                         <span class="a-button-text">Add to Cart</span>
                       </span>
                     </span>
@@ -261,7 +273,7 @@
                     <span class="a-spacing-small a-button-primary a-button-icon">
                       <span class="a-button-inner">
                         <i class="a-icon a-icon-buynow"></i>
-                        <input type="submit" name="submit.add-to-card" class="a-button-input">
+                        <input type="submit" name="submit.add-to-card" class="a-button-input" />
                         <span class="a-button-text">Buy Now</span>
                       </span>
                     </span>
@@ -281,7 +293,7 @@
                   </div>
                 </div>
 
-                <hr>
+                <hr />
 
                 <span class="a-declarative">
                   <a href="#" class="a-link-normal">
@@ -291,20 +303,18 @@
                     </div>
                   </a>
                 </span>
-                <br>
-                <hr>
+                <br />
+                <hr />
                 <div class="a-section">
                   <div class="clearfix">
                     <div class="float-left">
                       <form>
-                        <input type="radio" id="test2" name="radio-group">
+                        <input type="radio" id="test2" name="radio-group" />
                         <label for="test1">Buy Now</label>
                       </form>
                     </div>
                     <div class="flow-right">
-                      <span class="a-color-base offer-price a-text-normal">
-                        ${{ product.price }}
-                      </span>
+                      <span class="a-color-base offer-price a-text-normal">${{ product.price }}</span>
                     </div>
                   </div>
                 </div>
@@ -317,8 +327,8 @@
           </b-col>
         </div>
 
-        <br>
-        <hr>
+        <br />
+        <hr />
         <div class="books-entity-tease">
           <div class="bucket">
             <h2>More about the author</h2>
@@ -359,55 +369,57 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
-  import ReviewSection from '~/components/ReviewSection'
-  import StarRating from 'vue-star-rating'
+import { mapActions } from "vuex";
+import ReviewSection from "~/components/ReviewSection";
+// import StarRating from 'vue-star-rating'
 
-  export default {
-    transition(to, from) {
-      if (!from) {
-        return 'slide-left'
-      }
-      return 'slide-right'
-    },
-    async asyncData({$axios, params}) {
-      try {
-        let singleProduct = await $axios.$get(`/api/products/${params.id}`)
-        let manyReviews = await $axios.$get(`/api/reviews/${params.id}`)
-        // console.log(response)
-
-        const[productResponse, reviewsResponse] = await Promise.all([
-          singleProduct, manyReviews
-        ])
-
-        // console.log(typeof(productResponse.product.rating))
-        // console.log(productResponse.product.rating)
-        // console.log(typeof(reviewsResponse.reviews[0].rating))
-        // console.log(reviewsResponse.reviews[0].rating)
-
-        return {
-          product: productResponse.product,
-          reviews: reviewsResponse.reviews
-        }
-      } catch(err) {
-        console.log(err)
-      }
-    },
-    head() {
-      return {
-        title: `${this.product.title.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())))}`
-      }
-    },
-    components: {
-      ReviewSection,
-      StarRating
-    },
-    methods: {
-      ...mapActions(['addProductToCart'])
+export default {
+  transition(to, from) {
+    if (!from) {
+      return "slide-left";
     }
-  }
+    return "slide-right";
+  },
+  async asyncData({ $axios, params }) {
+    try {
+      let singleProduct = await $axios.$get(`/api/products/${params.id}`);
+      let manyReviews = await $axios.$get(`/api/reviews/${params.id}`);
+      // console.log(response)
+
+      const [productResponse, reviewsResponse] = await Promise.all([
+        singleProduct,
+        manyReviews,
+      ]);
+
+      // console.log(typeof(productResponse.product.rating))
+      // console.log(productResponse.product.rating)
+      // console.log(typeof(reviewsResponse.reviews[0].rating))
+      // console.log(reviewsResponse.reviews[0].rating)
+
+      return {
+        product: productResponse.product,
+        reviews: reviewsResponse.reviews,
+      };
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  head() {
+    return {
+      title: `${this.product.title.replace(/\w\S*/g, (w) =>
+        w.replace(/^\w/, (c) => c.toUpperCase())
+      )}`,
+    };
+  },
+  components: {
+    ReviewSection,
+    // StarRating
+  },
+  methods: {
+    ...mapActions(["addProductToCart"]),
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>

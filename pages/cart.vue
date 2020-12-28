@@ -62,14 +62,22 @@
                           </div>
                           <div class="sc-action-links">
                             <select @change="onChangeQuantity($event, product)">
-                              <option v-for="i in 10" :key="i" :value="i" :selected="checkQty(product.quantity, i)">Qty: &nbsp;{{i}}</option>
+                              <option
+                                v-for="i in 10"
+                                :key="i"
+                                :value="i"
+                                :selected="checkQty(product.quantity, i)"
+                              >Qty: &nbsp;{{i}}</option>
                             </select>
                             &nbsp;&nbsp;
                             <span>|</span>
                             &nbsp;
                             <!-- Delete button -->
                             <span class="a-size-small">
-                              <a href="#" @click.prevent="$store.commit('removeProduct', product)">Delete</a>
+                              <a
+                                href="#"
+                                @click.prevent="$store.commit('removeProduct', product)"
+                              >Delete</a>
                             </span>
                             &nbsp;
                             &nbsp;
@@ -125,7 +133,7 @@
                   <div>
                     <span class="a-spacing-small a-button-primary a-button-icon">
                       <span class="a-button-inner">
-                        <a href="#" class="a-button-text">Proceed to checkout</a>
+                        <nuxt-link to="/placeorder" class="a-button-text">Proceed to checkout</nuxt-link>
                       </span>
                     </span>
                   </div>
@@ -194,35 +202,39 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 export default {
   transition(to, from) {
     if (!from) {
-      return 'slide-left'
+      return "slide-left";
     }
-    return 'slide-right'
+    return "slide-right";
   },
   head() {
     return {
-      title: `${this.$auth.$state.user.name} | Shopping Cart`
-    }
+      title: `${
+        this.$auth.$state.user !== null
+          ? `${this.$auth.$state.user.name} | Shopping Cart`
+          : `Shoppint Cart`
+      }`,
+    };
   },
   computed: {
-    ...mapGetters(['getCart', 'getCartTotalPrice', 'getCartLength'])
+    ...mapGetters(["getCart", "getCartTotalPrice", "getCartLength"]),
   },
   methods: {
     onChangeQuantity(event, product) {
-      let qty = parseInt(event.target.value)
+      let qty = parseInt(event.target.value);
       // debugger
-      this.$store.commit('changeQty', {product, qty})
+      this.$store.commit("changeQty", { product, qty });
     },
     checkQty(prodQty, qty) {
-      if(parseInt(prodQty) === parseInt(qty)) {
-        return true
+      if (parseInt(prodQty) === parseInt(qty)) {
+        return true;
       } else {
-        return false
+        return false;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>

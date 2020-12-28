@@ -43,7 +43,10 @@
                           <b-col>
                             <span class="a-size-small a-color-secondary">by</span>
                             <span class="a-size-small a-color-secondary">
-                              <a href="#" class="a-link-normal a-text-normal">{{ product.owner ? product.owner.name: 'N/A' }}</a>
+                              <a
+                                href="#"
+                                class="a-link-normal a-text-normal"
+                              >{{ product.owner ? product.owner.name: 'N/A' }}</a>
                             </span>
                           </b-col>
                         </b-row>
@@ -56,7 +59,7 @@
                           <b-col col sm="7">
                             <div>
                               <!-- <b-link href="#">Hardcover</b-link> -->
-                              <a href="" class="a-link-normal a-text-normal">Hardcover</a>
+                              <a href class="a-link-normal a-text-normal">Hardcover</a>
                             </div>
                             <!-- Price -->
                             <div>
@@ -71,9 +74,7 @@
                                 </span>
                               </a>
                               <span class="a-letter-space"></span>
-                              <span class="a-size-base-plus a-color-secondary a-text-strike">
-                                $28.00
-                              </span>
+                              <span class="a-size-base-plus a-color-secondary a-text-strike">$28.00</span>
                             </div>
 
                             <div>
@@ -85,17 +86,19 @@
                               <b-col cols="12" class="pt-1 px-0 a-size-small a-color-secondary">
                                 Other Formats:
                                 <span class="a-letter-space"></span>
-                                <a href="#" class="a-size-small a-link-normal a-text-normal">Audio CD</a>
+                                <a
+                                  href="#"
+                                  class="a-size-small a-link-normal a-text-normal"
+                                >Audio CD</a>
                               </b-col>
                             </div>
-
                           </b-col>
                           <!-- Ratings -->
                           <b-col col sm="5">
                             <div class="a-row a-spacing-mini">
                               <!-- Star Ratings -->
                               <client-only>
-                                <stars-ratings
+                                <star-rating
                                   :rating="product.averageRating"
                                   :show-rating="false"
                                   :glow="1"
@@ -105,8 +108,7 @@
                                   :read-only="true"
                                   :star-size="18"
                                   :star-points="[23,2,14,17,0,19,10,34,7,50,23,43,38,50,36,34,46,19,31,17]"
-                                >
-                                </stars-ratings>
+                                ></star-rating>
                               </client-only>
                             </div>
                           </b-col>
@@ -125,40 +127,39 @@
 </template>
 
 <script>
-import FeaturedProduct from '@/components/FeaturedProduct'
+import FeaturedProduct from "@/components/FeaturedProduct";
 // import StarRating from 'vue-star-rating'
 
 export default {
   // layout: 'client',
   transition(to, from) {
     if (!from) {
-      return 'slide-left'
+      return "slide-left";
     }
-    return 'slide-right'
+    return "slide-right";
   },
   head() {
     return {
-      title: 'Client | Home'
-    }
+      title: "Client | Home",
+    };
   },
   components: {
     FeaturedProduct,
     // StarRating
   },
-  async asyncData({$axios}) {
+  async asyncData({ $axios }) {
     try {
-      let response = await $axios.$get('/api/products')
+      let response = await $axios.$get("/api/products");
       // console.log(response)
 
       return {
-        products: response.products
-      }
-
-    } catch(err) {
-      console.log(err)
+        products: response.products,
+      };
+    } catch (err) {
+      console.log(err);
     }
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>

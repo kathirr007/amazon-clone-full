@@ -24,14 +24,14 @@
                       <strong>
                         Shipping address
                         <small>
-                          <a href="#">Change</a>
+                          <nuxt-link to="/address">Change</nuxt-link>
                         </small>
                       </strong>
                     </div>
                     <div class="a-row">
                       <div class="displayAddressDiv">
                         <!-- User's address -->
-                        <ul class="displayAddressUL">
+                        <ul v-if="$auth.$state.user.address !== undefined" class="displayAddressUL">
                           <li>{{$auth.$state.user.address.fullName}}</li>
                           <li>{{$auth.$state.user.address.streetAddress}}</li>
                           <li>{{$auth.$state.user.address.city}}</li>
@@ -41,6 +41,22 @@
                             <span dir="ltr">{{$auth.$state.user.address.phoneNumber}}</span>
                           </li>
                         </ul>
+                        <div v-else-if="addresses.length !==0">
+                          <ul class="displayAddressUL">
+                            <li>{{addresses[0].fullName}}</li>
+                            <li>{{addresses[0].streetAddress}}</li>
+                            <li>{{addresses[0].city}}</li>
+                            <li>{{addresses[0].country}}</li>
+                            <li>
+                              Phone:
+                              <span dir="ltr">{{$auth.$state.user.address.phoneNumber}}</span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div v-else>
+                          You are not added any Address. Please add
+                          <nuxt-link to="/address">here</nuxt-link>.
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -148,7 +164,7 @@
                           </div>
                           <div
                             class="a-row a-color-secondary a-size-small"
-                          >Sold by:&nbsp;Amazon.com Services, Inc</div>
+                          >Sold by: Amazon.com Services, Inc</div>
                           <div class="a-row">
                             <div class="a-row a-spacing-top-micro">
                               <span class="a-button-small">
@@ -178,7 +194,12 @@
                         <!-- Delivery option -->
                         <div class="a-spacing-mini wednesday">
                           <!-- Shipping normal -->
-                          <input type="radio" name="order0" checked @change="onChooseShipping('normal')" />
+                          <input
+                            type="radio"
+                            name="order0"
+                            checked
+                            @change="onChooseShipping('normal')"
+                          />
                           <span class="a-radio-label">
                             <span class="a-color-success">
                               <strong>Averages 7 business days</strong>
@@ -186,7 +207,7 @@
                             <br />
                             <span
                               class="a-color-secondary"
-                            >$13.98&nbsp;-&nbsp;Standard International Shipping - No Tracking</span>
+                            >$13.98 - Standard International Shipping - No Tracking</span>
                           </span>
                         </div>
                         <br />
@@ -198,7 +219,7 @@
                               <strong>Averages 3 business days</strong>
                             </span>
                             <br />
-                            <span class="a-color-secondary">$49.98&nbsp;-&nbsp;Shipping</span>
+                            <span class="a-color-secondary">$49.98 - Shipping</span>
                           </span>
                         </div>
                       </fieldset>
@@ -229,7 +250,7 @@
                     <div class="a-box a-alert-info a-spacing-small">
                       <div class="a-box-inner alert-info-no-icon">
                         <strong>
-                          Amazon Currency Converter is Enabled. &nbsp;
+                          Amazon Currency Converter is Enabled.
                           <a
                             href="#"
                             class="a-size-mini"
@@ -272,7 +293,9 @@
                       </div>
                       <div class="col-sm-6 text-right">
                         <!-- Total Price with Shipping -->
-                        <div class="a-color-price a-size-medium a-text-bold">USD {{getCartTotalPriceWithShipping}}</div>
+                        <div
+                          class="a-color-price a-size-medium a-text-bold"
+                        >USD {{getCartTotalPriceWithShipping}}</div>
                       </div>
                     </div>
                   </div>
@@ -358,60 +381,75 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   transition(to, from) {
     if (!from) {
-      return 'slide-left'
+      return "slide-left";
     }
-    return 'slide-right'
+    return "slide-right";
   },
   head() {
     return {
-      title: `Place Your Order`
-    }
+      title: `Place Your Order`,
+    };
   },
   layout: "none",
-  async asyncData({$axios, store}) {
+  async asyncData({ $axios, store }) {
     try {
-      let response = await $axios.$post('api/shipment', {shipment: 'normal'})
+      let response = await $axios.$post("api/shipment", { shipment: "normal" });
+      let addressesResponse = await $axios.$get("/api/addresses");
+      // console.log(addressesResponse);
 
-      store.commit('setShipping', {
+      store.commit("setShipping", {
         price: response.shipment.price,
-        estimatedDelivery: response.shipment.estimated
-      })
+        estimatedDelivery: response.shipment.estimated,
+      });
 
       return {
+        addresses: addressesResponse.addresses,
         shippingPrice: response.shipment.price,
-        estimatedDelivery: response.shipment.estimated
-      }
-    } catch(err) {
-      console.log(err)
+        estimatedDelivery: response.shipment.estimated,
+      };
+    } catch (err) {
+      console.log(err);
+    }
+    try {
+      let response = await $axios.$get("/api/addresses");
+      // console.log(response.addresses)
+      return {
+        addresses: response.addresses,
+      };
+    } catch (err) {
+      console.log(err);
     }
   },
   computed: {
-    ...mapGetters(['getCart', 'getCartTotalPrice', 'getCartTotalPriceWithShipping'])
+    ...mapGetters([
+      "getCart",
+      "getCartTotalPrice",
+      "getCartTotalPriceWithShipping",
+    ]),
   },
   methods: {
     async onChooseShipping(shipment) {
       try {
-        let response = await this.$axios.$post('api/shipment', {
-          shipment: shipment
-        })
+        let response = await this.$axios.$post("api/shipment", {
+          shipment: shipment,
+        });
 
-        this.$store.commit('setShipping', {
+        this.$store.commit("setShipping", {
           price: response.shipment.price,
-          estimatedDelivery: response.shipment.estimated
-        })
+          estimatedDelivery: response.shipment.estimated,
+        });
 
-        this.shippingPrice = response.shipment.price,
-        this.estimatedDelivery = response.shipment.estimated
-
+        (this.shippingPrice = response.shipment.price),
+          (this.estimatedDelivery = response.shipment.estimated);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
