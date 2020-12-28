@@ -2,11 +2,12 @@
   <main class="listingPage">
     <div class="container-fluid">
       <div class="row">
-        <b-col cols="4" xl="2" lg="3" md="4" sm="4">
-          <!-- Sidebar -->
-        </b-col>
+        <!-- Sidebar Content-->
+        <!-- <b-col cols="4" xl="2" lg="3" md="4" sm="4">
+        </b-col>-->
+        <!-- Sidebar Content ends-->
         <!-- Main Content -->
-        <b-col col xl="10" lg="9" md="8" sm="8">
+        <b-col col xl="10" lg="9" md="8" sm="8" class="mx-auto">
           <FeaturedProduct />
           <div class="mainResults">
             <ul class="s-result-list">

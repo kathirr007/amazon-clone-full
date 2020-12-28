@@ -42,7 +42,10 @@
             <div class="row a-histogrm-row">
               <div class="col-md-2 col-sm-2 col-2 pr-0">
                 <div class="aok-nowrap">
-                  <a href="#">5 star</a>
+                  <a href="#">
+                    5
+                    <i class="fas fa-star"></i>
+                  </a>
                   <span class="a-letter-space"></span>
                 </div>
               </div>
@@ -65,7 +68,10 @@
             <div class="row a-histogrm-row" style="margin-top: -15px;">
               <div class="col-md-2 col-sm-2 col-2 pr-0">
                 <div class="aok-nowrap">
-                  <a href="#">4 star</a>
+                  <a href="#">
+                    4
+                    <i class="fas fa-star"></i>
+                  </a>
                   <span class="a-letter-space"></span>
                 </div>
               </div>
@@ -88,7 +94,10 @@
             <div class="row a-histogrm-row" style="margin-top: -15px;">
               <div class="col-md-2 col-sm-2 col-2 pr-0">
                 <div class="aok-nowrap">
-                  <a href="#">3 star</a>
+                  <a href="#">
+                    3
+                    <i class="fas fa-star"></i>
+                  </a>
                   <span class="a-letter-space"></span>
                 </div>
               </div>
@@ -111,7 +120,10 @@
             <div class="row a-histogrm-row" style="margin-top: -15px;">
               <div class="col-md-2 col-sm-2 col-2 pr-0">
                 <div class="aok-nowrap">
-                  <a href="#">2 star</a>
+                  <a href="#">
+                    2
+                    <i class="fas fa-star"></i>
+                  </a>
                   <span class="a-letter-space"></span>
                 </div>
               </div>
@@ -134,7 +146,10 @@
             <div class="row a-histogrm-row" style="margin-top: -15px;">
               <div class="col-md-2 col-sm-2 col-2 pr-0">
                 <div class="aok-nowrap">
-                  <a href="#">1 star</a>
+                  <a href="#">
+                    1
+                    <i class="fas fa-star"></i>
+                  </a>
                   <span class="a-letter-space"></span>
                 </div>
               </div>
