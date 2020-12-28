@@ -4,8 +4,9 @@
   "description": "Amazon clone project using Vue.js, Nuxt.js, MongoDb, Stripe, Algolia, and AWS",
   "author": "kathirr007",
   "private": true,
+  "toDebug": "Add --inspect=7000 --inspect-brk before javascript file to debug node server functions",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon  --inspect=7010 --inspect-brk server/server.js --watch server",
+    "dev": "cross-env NODE_ENV=development nodemon server/server.js --watch server",
     "build": "nuxt build",
     "start": "cross-env NODE_ENV=production node server/server.js",
     "generate": "nuxt generate",
@@ -25,6 +26,7 @@
     "bootstrap-vue": "^2.19.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
+    "date-fns": "^2.16.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
