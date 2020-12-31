@@ -4,7 +4,12 @@
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <h1 class="text-center mt-2">
-            Profile {{ $auth.$state.user && $auth.$state.user.name | capitalize }}
+            <template v-if="authUser !== null">
+              Profile {{ authUser.name | capitalize }}
+            </template>
+            <template v-else>
+              Profile
+            </template>
             <small>
               <a href="#" @click="onLogout">Logout</a>
             </small>
@@ -22,7 +27,7 @@
                 id="userName"
                 v-model="name"
                 type="text"
-                :placeholder="$auth.$state.user !== null ? $auth.$state.user.name : 'Please enter new name here'"
+                :placeholder="authUser !== null ? authUser.name : 'Please enter new name here'"
               ></b-form-input>
             </b-form-group>
             <!-- Email -->
@@ -35,7 +40,7 @@
                 id="email"
                 v-model="email"
                 type="email"
-                :placeholder="$auth.$state.user !== null ? $auth.$state.user.email:'Please enter new email here'"
+                :placeholder="authUser !== null ? authUser.email:'Please enter new email here'"
               ></b-form-input>
             </b-form-group>
             <!-- Password -->
@@ -68,6 +73,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   transition(to, from) {
     if (!from) {
@@ -86,7 +92,11 @@ export default {
       password: "",
     };
   },
-  comoputed: {},
+  computed: {
+    ...mapGetters(["authUser"]),
+  },
+  middleware: "auth",
+  // auth: 'guest',
   methods: {
     async onUpdateProfile() {
       // debugger
@@ -113,7 +123,15 @@ export default {
       }
     },
     async onLogout() {
-      await this.$auth.logout();
+      try {
+        await this.$auth.logout()
+          .then(_ => {
+            console.log('logged out successfully...')
+            this.$router.push('/')
+          });
+      } catch (error) {
+        console.log(error)
+      }
       // this.$router.push('/')
     },
   },

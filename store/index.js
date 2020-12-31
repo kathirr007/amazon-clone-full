@@ -105,16 +105,11 @@ export const getters = {
   getEstimatedDelivery(state) {
     return state.shippingEstimatedDelivery;
   },
-  authUser(state) {
-    return state.user || null;
+  authUser(state, commit, rootState) {
+    return state.auth.user || null;
   },
   isAuthenticated(state) {
-    /* if (state.user) {
-            return true
-        } else {
-            return false
-        } */
-    return !!state.user;
+    return state.auth.loggedIn || null;
   },
   isAdmin(state) {
     return state.user && state.user.role && state.user.role === "admin";

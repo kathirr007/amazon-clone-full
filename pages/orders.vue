@@ -143,6 +143,8 @@
 
 <script>
 export default {
+  middleware:'auth',
+  // auth: 'guest',
   async asyncData({$axios}) {
     try {
       let response = await $axios.$get('/api/orders')

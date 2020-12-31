@@ -78,7 +78,7 @@ export default {
     return "slide-right";
   },
   middleware: "auth",
-  auth: "guest",
+  // auth: "guest",
   // layout: 'none',
   head() {
     return {
@@ -93,17 +93,22 @@ export default {
   },
   methods: {
     async onLogin() {
-      // debugger
       try {
+        // debugger
         this.$auth.loginWith("local", {
           data: {
             email: this.email,
             password: this.password,
           },
+        })
+        .then(_ => {
+          console.log('logged in successfully...')
+          this.$router.push("/");
         });
 
-        this.$router.push("/");
-      } catch (err) {}
+      } catch (err) {
+        console.log(err)
+      }
     },
   },
 };
