@@ -78,7 +78,7 @@ export default {
     return "slide-right";
   },
   middleware: "auth",
-  // auth: "guest",
+  auth: "guest",
   // layout: 'none',
   head() {
     return {

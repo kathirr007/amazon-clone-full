@@ -1,5 +1,4 @@
 <template>
-<body>
   <!--SHIPPING ADDRESS-->
   <div class="container-fluid">
     <div class="shipping-address">
@@ -30,7 +29,6 @@
                     </div>
                     <div class="a-row">
                       <div class="displayAddressDiv">
-                        <!-- User's address -->
                         <ul v-if="$auth.$state.user" class="displayAddressUL">
                           <li>{{$auth.$state.user.address.fullName}}</li>
                           <li>{{$auth.$state.user.address.streetAddress}}</li>
@@ -129,28 +127,22 @@
           <div class="spc-orders a-box">
             <div class="a-box-inner">
               <div class="shipping-group">
-                <!-- Estimated delivery -->
                 <div
                   class="a-row a-color-state a-text-bold a-size-medium a-spacing-small"
                 >Estimated delivery: {{estimatedDelivery}}</div>
                 <div class="row">
-                  <!-- Cart -->
                   <div class="col-xl-6 col-lg-7 col-sm-6 col-12">
                     <div class="a-row a-spacing-base" v-for="product in getCart" :key="product._id">
                       <div class="row">
-                        <!-- Product's photo -->
                         <div class="col-sm-3 col-3">
                           <img :src="product.photo" style="width: 100px;" />
                         </div>
-                        <!-- Product's Title -->
                         <div class="col-sm-9 col-9">
                           <div class="a-row">
                             <strong>{{product.title}}</strong>
                           </div>
-                          <!-- Product's owner name -->
                           <div class="a-row a-size-small">by {{product.owner.name}}</div>
                           <div class="a-row">
-                            <!-- Product's price -->
                             <span class="a-color-price a-spacing-micro">
                               <strong dir="ltr">${{product.price * product.quantity}}</strong>
                             </span>
@@ -159,7 +151,6 @@
                             <span class="availability a-color-success">In Stock.</span>
                           </div>
                           <div class="a-row">
-                            <!-- Product's quantity -->
                             <strong>Quantity: {{product.quantity}}</strong>
                           </div>
                           <div
@@ -191,9 +182,7 @@
                         <span class="shipping-speeds-title a-size-medium">
                           <b>Choose a delivery option:</b>
                         </span>
-                        <!-- Delivery option -->
                         <div class="a-spacing-mini wednesday">
-                          <!-- Shipping normal -->
                           <input
                             type="radio"
                             name="order0"
@@ -212,7 +201,6 @@
                         </div>
                         <br />
                         <div class="a-spacing-mini tuesday">
-                          <!-- Shipping fast -->
                           <input type="radio" name="order0" @change="onChooseShipping('fast')" />
                           <span class="a-radio-label">
                             <span class="a-color-success">
@@ -262,12 +250,10 @@
                   <h3 class="a-spacing-micro a-size-base">Order Summary</h3>
                   <div class="order-summary" style="font-size: 12px;">
                     <div class="row">
-                      <!-- Cart's total price -->
                       <div class="col-sm-6">Items:</div>
                       <div class="col-sm-6 text-right">USD ${{getCartTotalPrice}}</div>
                     </div>
                     <div class="row">
-                      <!-- Shipping cost -->
                       <div class="col-sm-6">Shipping &amp; handling:</div>
                       <div class="col-sm-6 text-right">USD {{shippingPrice}}</div>
                     </div>
@@ -277,7 +263,6 @@
                         <hr />
                       </div>
                     </div>
-                    <!-- Total Price with Shipping -->
                     <div class="row">
                       <div class="col-sm-6">Total Before Tax:</div>
                       <div class="col-sm-6 text-right">USD {{getCartTotalPriceWithShipping}}</div>
@@ -292,7 +277,6 @@
                         <div class="a-color-price a-size-medium a-text-bold">Order total:</div>
                       </div>
                       <div class="col-sm-6 text-right">
-                        <!-- Total Price with Shipping -->
                         <div
                           class="a-color-price a-size-medium a-text-bold"
                         >USD {{getCartTotalPriceWithShipping}}</div>
@@ -377,7 +361,6 @@
     </div>
   </div>
   <!--/SHIPPING ADDRESS-->
-</body>
 </template>
 
 <script>
@@ -397,7 +380,7 @@ export default {
   },
   middleware: "auth",
   // auth: 'guest',
-  layout: "none",
+  // layout: "none",
   async asyncData({ $axios, store }) {
     try {
       let response = await $axios.$post("api/shipment", { shipment: "normal" });
