@@ -74,7 +74,7 @@
                 </span>
               </a>
               <span class="icp-nav-link-border"></span>
-              <template v-if="$auth.$state.loggedIn">
+              <template v-if="isAuthenticated">
                 <nuxt-link
                   to="/profile"
                   class="nav-a nav-a-2"
@@ -82,9 +82,10 @@
                   tabindex="0"
                 >
                   <span class="nav-line-1">Hello,</span>
-                  <span class="nav-line-2">{{ $auth.$state.user.name }}</span>
+                  <span class="nav-line-2">{{ authUser.name }}</span>
                 </nuxt-link>
               </template>
+
               <template v-else>
                 <nuxt-link
                   to="/signup"
@@ -100,9 +101,9 @@
                 </nuxt-link>
               </template>
               <nuxt-link to="/orders" class="nav-a nav-a-2 nav-single-row-link">
-                <span class="nav-line-1"></span>
-                <span class="nav-line-2">Orders</span>
-              </nuxt-link>
+                  <span class="nav-line-1"></span>
+                  <span class="nav-line-2">Orders</span>
+                </nuxt-link>
               <nuxt-link to="/cart" class="nav-a nav-a-2" id="nav-cart">
                 <span class="nav-line-1" aria-hidden="true"></span>
                 <span class="nav-line-2" aria-hidden="true">Cart</span>
@@ -129,9 +130,14 @@ export default {
   components: {
     Search,
   },
-  computed: {
-    ...mapGetters(["getCartLength"]),
+  data: () => {
+    return {
+      // loggedIn: false
+    }
   },
+  computed: {
+    ...mapGetters(["getCartLength", "isAuthenticated", "authUser"]),
+  }
 };
 </script>
 

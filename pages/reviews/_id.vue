@@ -106,7 +106,7 @@
 <script>
   import infoToastMixin from '~/mixins/infoToast'
   import imgUploadMixin from '~/mixins/imgUpload'
-  import StarRating from 'vue-star-rating'
+  // import StarRating from 'vue-star-rating'
 
   export default {
     head() {
@@ -128,8 +128,10 @@
     },
     mixins: [infoToastMixin, imgUploadMixin],
     components: {
-      StarRating
+      // StarRating
     },
+    middleware: 'auth',
+    // auth: 'guest',
     data() {
       return{
         selectedFiles: [],

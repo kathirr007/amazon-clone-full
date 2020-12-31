@@ -31,7 +31,7 @@
                     <div class="a-row">
                       <div class="displayAddressDiv">
                         <!-- User's address -->
-                        <ul v-if="$auth.$state.user.address !== undefined" class="displayAddressUL">
+                        <ul v-if="$auth.$state.user" class="displayAddressUL">
                           <li>{{$auth.$state.user.address.fullName}}</li>
                           <li>{{$auth.$state.user.address.streetAddress}}</li>
                           <li>{{$auth.$state.user.address.city}}</li>
@@ -41,7 +41,7 @@
                             <span dir="ltr">{{$auth.$state.user.address.phoneNumber}}</span>
                           </li>
                         </ul>
-                        <div v-else-if="addresses.length !==0">
+                        <div v-else-if="addresses !== undefined && addresses.length !==0">
                           <ul class="displayAddressUL">
                             <li>{{addresses[0].fullName}}</li>
                             <li>{{addresses[0].streetAddress}}</li>
@@ -268,7 +268,7 @@
                     </div>
                     <div class="row">
                       <!-- Shipping cost -->
-                      <div class="col-sm-6">Shipping & handling:</div>
+                      <div class="col-sm-6">Shipping &amp; handling:</div>
                       <div class="col-sm-6 text-right">USD {{shippingPrice}}</div>
                     </div>
                     <div class="row mt-2">
@@ -395,6 +395,8 @@ export default {
       title: `Place Your Order`,
     };
   },
+  middleware: "auth",
+  // auth: 'guest',
   layout: "none",
   async asyncData({ $axios, store }) {
     try {
@@ -411,15 +413,6 @@ export default {
         addresses: addressesResponse.addresses,
         shippingPrice: response.shipment.price,
         estimatedDelivery: response.shipment.estimated,
-      };
-    } catch (err) {
-      console.log(err);
-    }
-    try {
-      let response = await $axios.$get("/api/addresses");
-      // console.log(response.addresses)
-      return {
-        addresses: response.addresses,
       };
     } catch (err) {
       console.log(err);
