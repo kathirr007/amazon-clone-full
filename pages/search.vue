@@ -165,6 +165,7 @@ export default {
 
     }
   },
+  auth: false,
   components: {
     StarRating
   },

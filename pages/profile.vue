@@ -7,9 +7,7 @@
             <template v-if="authUser !== null">
               Profile {{ authUser.name | capitalize }}
             </template>
-            <template v-else>
-              Profile
-            </template>
+            <template v-else> Profile </template>
             <small>
               <a href="#" @click="onLogout">Logout</a>
             </small>
@@ -27,7 +25,11 @@
                 id="userName"
                 v-model="name"
                 type="text"
-                :placeholder="authUser !== null ? authUser.name : 'Please enter new name here'"
+                :placeholder="
+                  authUser !== null
+                    ? authUser.name
+                    : 'Please enter new name here'
+                "
               ></b-form-input>
             </b-form-group>
             <!-- Email -->
@@ -40,7 +42,11 @@
                 id="email"
                 v-model="email"
                 type="email"
-                :placeholder="authUser !== null ? authUser.email:'Please enter new email here'"
+                :placeholder="
+                  authUser !== null
+                    ? authUser.email
+                    : 'Please enter new email here'
+                "
               ></b-form-input>
             </b-form-group>
             <!-- Password -->
@@ -58,7 +64,9 @@
               <b-col class="mt-4">
                 <span class="a-button-register">
                   <span class="a-button-inner">
-                    <span class="a-button-text" @click="onUpdateProfile">Update Profile</span>
+                    <span class="a-button-text" @click="onUpdateProfile"
+                      >Update Profile</span
+                    >
                   </span>
                 </span>
               </b-col>
@@ -84,7 +92,7 @@ export default {
   head: {
     title: "Update Profile",
   },
-
+  middleware: "loggedIn",
   data() {
     return {
       name: "",
@@ -95,7 +103,7 @@ export default {
   computed: {
     ...mapGetters(["authUser"]),
   },
-  middleware: "auth",
+  // middleware: "auth",
   // auth: 'guest',
   methods: {
     async onUpdateProfile() {
@@ -124,13 +132,12 @@ export default {
     },
     async onLogout() {
       try {
-        await this.$auth.logout()
-          .then(_ => {
-            console.log('logged out successfully...')
-            this.$router.push('/')
-          });
+        await this.$auth.logout().then((_) => {
+          console.log("logged out successfully...");
+          this.$router.push("/");
+        });
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
       // this.$router.push('/')
     },

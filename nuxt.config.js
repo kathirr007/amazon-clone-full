@@ -96,6 +96,11 @@ module.exports = {
   axios: {
     baseURL: process.env.BASE_URL || `http://localhost:4400`
   },
+  /* Nuxt Router Middleware */
+  /* router: {
+    middleware: ['auth']
+  }, */
+  /* Nuxt Router Middleware ends */
   /* server Middleware */
   serverMiddleware: ["~/server/routes/index"],
   /* server Middleware end */
@@ -113,6 +118,7 @@ module.exports = {
   auth: {
     strategies: {
       local: {
+        schema: 'refresh',
         endpoints: {
           login: {
             propertName: "token"

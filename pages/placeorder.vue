@@ -8,7 +8,9 @@
         </nuxt-link>
       </div>
       <div class="a-row">
-        <div class="a-size-large a-text-bold a-spacing-mini">Review your order</div>
+        <div class="a-size-large a-text-bold a-spacing-mini">
+          Review your order
+        </div>
         <div class="a-row a-spacing-small a-size-mini"></div>
       </div>
       <div class="row">
@@ -29,25 +31,43 @@
                     </div>
                     <div class="a-row">
                       <div class="displayAddressDiv">
-                        <ul v-if="$auth.$state.user" class="displayAddressUL">
-                          <li>{{$auth.$state.user.address.fullName}}</li>
-                          <li>{{$auth.$state.user.address.streetAddress}}</li>
-                          <li>{{$auth.$state.user.address.city}}</li>
-                          <li>{{$auth.$state.user.address.country}}</li>
+                        <ul
+                          v-if="
+                            authUser !== undefined &&
+                            authUser.address !== undefined
+                          "
+                          class="displayAddressUL"
+                        >
+                          <li>{{ authUser.address.fullName }}</li>
+                          <li>{{ authUser.address.streetAddress }}</li>
+                          <li>{{ authUser.address.city }}</li>
+                          <li>
+                            {{ authUser.address.country }}
+                          </li>
                           <li>
                             Phone:
-                            <span dir="ltr">{{$auth.$state.user.address.phoneNumber}}</span>
+                            <span dir="ltr">{{
+                              authUser.address.phoneNumber
+                            }}</span>
                           </li>
                         </ul>
-                        <div v-else-if="addresses !== undefined && addresses.length !==0">
+                        <div
+                          v-else-if="
+                            addresses !== undefined && addresses.length !== 0
+                          "
+                        >
                           <ul class="displayAddressUL">
-                            <li>{{addresses[0].fullName}}</li>
-                            <li>{{addresses[0].streetAddress}}</li>
-                            <li>{{addresses[0].city}}</li>
-                            <li>{{addresses[0].country}}</li>
+                            <li>{{ addresses[0].fullName }}</li>
+                            <li>{{ addresses[0].streetAddress }}</li>
+                            <li>{{ addresses[0].city }}</li>
+                            <li>
+                              {{ addresses[0].country }}
+                            </li>
                             <li>
                               Phone:
-                              <span dir="ltr">{{$auth.$state.user.address.phoneNumber}}</span>
+                              <span dir="ltr">{{
+                                addresses[0].phoneNumber
+                              }}</span>
                             </li>
                           </ul>
                         </div>
@@ -103,7 +123,9 @@
                       </span>
                     </div>
                     <div class="row">
-                      <div class="col-xl-8 col-lg-7 col-md-7 col-sm-7 col-8 pr-0">
+                      <div
+                        class="col-xl-8 col-lg-7 col-md-7 col-sm-7 col-8 pr-0"
+                      >
                         <input
                           type="text"
                           autocomplete="off"
@@ -129,33 +151,47 @@
               <div class="shipping-group">
                 <div
                   class="a-row a-color-state a-text-bold a-size-medium a-spacing-small"
-                >Estimated delivery: {{estimatedDelivery}}</div>
+                >
+                  Estimated delivery: {{ estimatedDelivery }}
+                </div>
                 <div class="row">
                   <div class="col-xl-6 col-lg-7 col-sm-6 col-12">
-                    <div class="a-row a-spacing-base" v-for="product in getCart" :key="product._id">
+                    <div
+                      class="a-row a-spacing-base"
+                      v-for="product in getCart"
+                      :key="product._id"
+                    >
                       <div class="row">
                         <div class="col-sm-3 col-3">
-                          <img :src="product.photo" style="width: 100px;" />
+                          <img :src="product.photo" style="width: 100px" />
                         </div>
                         <div class="col-sm-9 col-9">
                           <div class="a-row">
-                            <strong>{{product.title}}</strong>
+                            <nuxt-link :to="`products/${product._id}`">
+                              <strong>{{ product.title }}</strong>
+                            </nuxt-link>
                           </div>
-                          <div class="a-row a-size-small">by {{product.owner.name}}</div>
+                          <div class="a-row a-size-small">
+                            by {{ product.owner.name }}
+                          </div>
                           <div class="a-row">
                             <span class="a-color-price a-spacing-micro">
-                              <strong dir="ltr">${{product.price * product.quantity}}</strong>
+                              <strong dir="ltr"
+                                >${{ product.price * product.quantity }}</strong
+                              >
                             </span>
                           </div>
                           <div class="a-row">
-                            <span class="availability a-color-success">In Stock.</span>
+                            <span class="availability a-color-success"
+                              >In Stock.</span
+                            >
                           </div>
                           <div class="a-row">
-                            <strong>Quantity: {{product.quantity}}</strong>
+                            <strong>Quantity: {{ product.quantity }}</strong>
                           </div>
-                          <div
-                            class="a-row a-color-secondary a-size-small"
-                          >Sold by: Amazon.com Services, Inc</div>
+                          <div class="a-row a-color-secondary a-size-small">
+                            Sold by: Amazon.com Services, Inc
+                          </div>
                           <div class="a-row">
                             <div class="a-row a-spacing-top-micro">
                               <span class="a-button-small">
@@ -164,12 +200,15 @@
                                   <a
                                     href="#"
                                     class="a-button-text gift-popover-link"
-                                  >Add a gift receipt</a>
+                                    >Add a gift receipt</a
+                                  >
                                 </span>
                               </span>
                             </div>
                             <div class="a-row">
-                              <span class="a-color-secondary a-size-mini">and see other gift options</span>
+                              <span class="a-color-secondary a-size-mini"
+                                >and see other gift options</span
+                              >
                             </div>
                           </div>
                         </div>
@@ -194,20 +233,27 @@
                               <strong>Averages 7 business days</strong>
                             </span>
                             <br />
-                            <span
-                              class="a-color-secondary"
-                            >$13.98 - Standard International Shipping - No Tracking</span>
+                            <span class="a-color-secondary"
+                              >$13.98 - Standard International Shipping - No
+                              Tracking</span
+                            >
                           </span>
                         </div>
                         <br />
                         <div class="a-spacing-mini tuesday">
-                          <input type="radio" name="order0" @change="onChooseShipping('fast')" />
+                          <input
+                            type="radio"
+                            name="order0"
+                            @change="onChooseShipping('fast')"
+                          />
                           <span class="a-radio-label">
                             <span class="a-color-success">
                               <strong>Averages 3 business days</strong>
                             </span>
                             <br />
-                            <span class="a-color-secondary">$49.98 - Shipping</span>
+                            <span class="a-color-secondary"
+                              >$49.98 - Shipping</span
+                            >
                           </span>
                         </div>
                       </fieldset>
@@ -224,7 +270,9 @@
               <div class="a-box-inner">
                 <div class="a-row a-spacing-micro">
                   <nuxt-link to="/payment">
-                    <span class="a-button-place-order">Place your order in USD</span>
+                    <span class="a-button-place-order"
+                      >Place your order in USD</span
+                    >
                   </nuxt-link>
                 </div>
                 <div class="a-row a-spacing-small a-size-small a-text-center">
@@ -239,23 +287,24 @@
                       <div class="a-box-inner alert-info-no-icon">
                         <strong>
                           Amazon Currency Converter is Enabled.
-                          <a
-                            href="#"
-                            class="a-size-mini"
-                          >Learn More</a>
+                          <a href="#" class="a-size-mini">Learn More</a>
                         </strong>
                       </div>
                     </div>
                   </div>
                   <h3 class="a-spacing-micro a-size-base">Order Summary</h3>
-                  <div class="order-summary" style="font-size: 12px;">
+                  <div class="order-summary" style="font-size: 12px">
                     <div class="row">
                       <div class="col-sm-6">Items:</div>
-                      <div class="col-sm-6 text-right">USD ${{getCartTotalPrice}}</div>
+                      <div class="col-sm-6 text-right">
+                        USD ${{ getCartTotalPrice }}
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-sm-6">Shipping &amp; handling:</div>
-                      <div class="col-sm-6 text-right">USD {{shippingPrice}}</div>
+                      <div class="col-sm-6 text-right">
+                        USD {{ shippingPrice }}
+                      </div>
                     </div>
                     <div class="row mt-2">
                       <div class="col-sm-6"></div>
@@ -265,7 +314,9 @@
                     </div>
                     <div class="row">
                       <div class="col-sm-6">Total Before Tax:</div>
-                      <div class="col-sm-6 text-right">USD {{getCartTotalPriceWithShipping}}</div>
+                      <div class="col-sm-6 text-right">
+                        USD {{ getCartTotalPriceWithShipping }}
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-sm-6">Estimated tax to be collected:</div>
@@ -274,12 +325,14 @@
                     <hr />
                     <div class="row">
                       <div class="col-sm-6">
-                        <div class="a-color-price a-size-medium a-text-bold">Order total:</div>
+                        <div class="a-color-price a-size-medium a-text-bold">
+                          Order total:
+                        </div>
                       </div>
                       <div class="col-sm-6 text-right">
-                        <div
-                          class="a-color-price a-size-medium a-text-bold"
-                        >USD {{getCartTotalPriceWithShipping}}</div>
+                        <div class="a-color-price a-size-medium a-text-bold">
+                          USD {{ getCartTotalPriceWithShipping }}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -295,8 +348,12 @@
                       <a href="#">Selected payment currency</a>
                     </span>
                     <fieldset class="pl-3">
-                      <span style="margin-left: 1rem;">
-                        <input type="radio" class="no-js-hide" value="transactional" />
+                      <span style="margin-left: 1rem">
+                        <input
+                          type="radio"
+                          class="no-js-hide"
+                          value="transactional"
+                        />
                         <span class="a-radio-label">USD</span>
                       </span>
                       <div class="a-row">
@@ -309,10 +366,9 @@
                 </div>
                 <div class="a-size-mini">
                   <div class="a-row a-spacing-mini mb-1">
-                    Please note that your country may charge import duties, taxes and fees that you may have to pay ahead of delivery.
-                    <a
-                      href="#"
-                    >Learn more</a>
+                    Please note that your country may charge import duties,
+                    taxes and fees that you may have to pay ahead of delivery.
+                    <a href="#">Learn more</a>
                   </div>
                   <div class="a-row a-spacing-mini mb-1">
                     <a href="#">How are shipping costs calculated?</a>
@@ -332,31 +388,35 @@
           <a href="#">Help pages</a> or
           <a href="#">contact us</a>
         </p>
-        <p
-          class="a-color-secondary a-size-mini"
-        >For an item sold by Amazon.com: When you click the "Place your order" button, we'll send you an email message acknowledging receipt of your order. Your contract to purchase an item will not be complete until we send you an email notifying you that the item has been shipped.</p>
+        <p class="a-color-secondary a-size-mini">
+          For an item sold by Amazon.com: When you click the "Place your order"
+          button, we'll send you an email message acknowledging receipt of your
+          order. Your contract to purchase an item will not be complete until we
+          send you an email notifying you that the item has been shipped.
+        </p>
         <p id="state-sales-tax-info" class="a-color-secondary a-size-mini">
           Colorado, Oklahoma, South Dakota and Vermont Purchasers:
-          <a
-            href="#"
-          >Important information regarding sales tax you may owe in your State</a>
+          <a href="#"
+            >Important information regarding sales tax you may owe in your
+            State</a
+          >
         </p>
         <div class="a-color-secondary a-size-mini">
           <p class="a-color-secondary a-size-mini">
-            Within 30 days of delivery, you may return new, unopened merchandise in its original condition. Exceptions and restrictions apply. See Amazon.com's
-            <a
-              href="#"
-            >Returns Policy</a>
+            Within 30 days of delivery, you may return new, unopened merchandise
+            in its original condition. Exceptions and restrictions apply. See
+            Amazon.com's
+            <a href="#">Returns Policy</a>
             <br />
-            <br />Go to the
-            <a href="#">Amazon.com homepage</a> without completing your order.
+            <br />Go to the <a href="#">Amazon.com homepage</a> without
+            completing your order.
           </p>
         </div>
       </div>
       <hr />
       <p class="a-size-small a-text-center a-color-secondary" data-testid>
-        <a href="#">Conditions of Use</a> |
-        <a href="#">Privacy Notice</a> © 1996-2019, Amazon.com, Inc.
+        <a href="#">Conditions of Use</a> | <a href="#">Privacy Notice</a> ©
+        1996-2019, Amazon.com, Inc.
       </p>
     </div>
   </div>
@@ -378,7 +438,7 @@ export default {
       title: `Place Your Order`,
     };
   },
-  middleware: "auth",
+  middleware: "loggedIn",
   // auth: 'guest',
   // layout: "none",
   async asyncData({ $axios, store }) {
@@ -401,13 +461,25 @@ export default {
       console.log(err);
     }
   },
+  data() {
+    return {
+      // addresses: [],
+    };
+  },
   computed: {
     ...mapGetters([
+      "authUser",
       "getCart",
       "getCartTotalPrice",
       "getCartTotalPriceWithShipping",
     ]),
   },
+  /* async mounted() {
+    let response = await this.$axios.$get("/api/addresses");
+    if (response.success && response.addresses.length !== 0) {
+      this.addresses = response.addresses;
+    }
+  }, */
   methods: {
     async onChooseShipping(shipment) {
       try {

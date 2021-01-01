@@ -130,7 +130,7 @@
     components: {
       // StarRating
     },
-    middleware: 'auth',
+    middleware: 'loggedIn',
     // auth: 'guest',
     data() {
       return{

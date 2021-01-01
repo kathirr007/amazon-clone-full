@@ -16,7 +16,9 @@
                 <h1 class="a-spacing-small">Sign In</h1>
                 <!-- Email -->
                 <div class="a-row a-spacing-base">
-                  <label for="ap_customer_email" class="a-form-label">Email</label>
+                  <label for="ap_customer_email" class="a-form-label"
+                    >Email</label
+                  >
                   <input
                     type="email"
                     id="ap_customer_email"
@@ -26,7 +28,9 @@
                 </div>
                 <!-- Password -->
                 <div class="a-row a-spacing-base">
-                  <label for="ap_customer_password" class="a-form-label">Password</label>
+                  <label for="ap_customer_password" class="a-form-label"
+                    >Password</label
+                  >
                   <input
                     type="password"
                     id="ap_customer_password"
@@ -34,17 +38,23 @@
                     class="a-input-text form-control auth-atofocus auth-required-field auth-verification-request-info"
                   />
                   <div class="a-alert-container pl-0">
-                    <div class="a-alert-content">Password must be at least 6 characters</div>
+                    <div class="a-alert-content">
+                      Password must be at least 6 characters
+                    </div>
                   </div>
                 </div>
                 <!-- Button -->
                 <div class="a-row a-spacing-extra-large mb-4">
                   <span class="a-button-primary">
                     <span class="a-button-inner">
-                      <span class="a-button-text" @click="onLogin">Continue</span>
+                      <span class="a-button-text" @click="onLogin"
+                        >Continue</span
+                      >
                     </span>
                   </span>
-                  <div class="a-row a-spacing-top-medium a-size-small text-center">
+                  <div
+                    class="a-row a-spacing-top-medium a-size-small text-center"
+                  >
                     <b>
                       By creating an account, you agree to Amazon's
                       <a href="#">Conditions of use</a> and
@@ -56,7 +66,9 @@
                 <div class="a-row text-center">
                   <b>
                     Don't have account?
-                    <nuxt-link to="/signup" class="a-link-emphasis">Signup</nuxt-link>
+                    <nuxt-link to="/signup" class="a-link-emphasis"
+                      >Signup</nuxt-link
+                    >
                   </b>
                 </div>
               </div>
@@ -77,8 +89,8 @@ export default {
     }
     return "slide-right";
   },
-  middleware: "auth",
-  auth: "guest",
+  middleware: "isGuest",
+  // auth: "guest",
   // layout: 'none',
   head() {
     return {
@@ -92,22 +104,74 @@ export default {
     };
   },
   methods: {
+    async onSignup() {
+      debugger;
+      try {
+        let data = {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+        };
+        debugger;
+        let response = await this.$axios.$post("/api/auth/signup", data);
+
+        if (response.success) {
+          this.$auth.loginWith("local", {
+            data: {
+              email: this.email,
+              password: this.password,
+            },
+          });
+
+          this.$router.push("/");
+        } else {
+          console.log(response);
+          this.$bvToast.toast(`${response.message}`, {
+            title: `Signup Error`,
+            variant: "danger",
+            solid: true,
+          });
+        }
+      } catch (err) {}
+    },
     async onLogin() {
+      let data = {
+        email: this.email,
+        password: this.password,
+      };
       try {
         // debugger
-        this.$auth.loginWith("local", {
-          data: {
-            email: this.email,
-            password: this.password,
-          },
-        })
-        .then(_ => {
-          console.log('logged in successfully...')
-          this.$router.push("/");
-        });
+        let response = await this.$axios.$post("/api/auth/login", data);
+        if (response.success) {
+          this.$auth.loginWith("local", {
+            data: {
+              email: this.email,
+              password: this.password,
+            },
+          });
 
+          this.$router.push("/");
+        } else {
+          console.log(response);
+          this.$bvToast.toast(`${response.message}`, {
+            title: `SignIn Error`,
+            variant: "danger",
+            solid: true,
+          });
+        }
+        /* this.$auth
+          .loginWith("local", {
+            data: {
+              email: this.email,
+              password: this.password,
+            },
+          })
+          .then((_) => {
+            console.log("logged in successfully...");
+            this.$router.push("/");
+          }); */
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
     },
   },

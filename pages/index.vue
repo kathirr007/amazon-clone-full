@@ -139,6 +139,7 @@ export default {
     }
     return "slide-right";
   },
+  auth: false,
   head() {
     return {
       title: "Client | Home",

@@ -2,12 +2,21 @@
   <main>
     <div class="container-fluid browsing-history mb-3">
       <div class="row">
-        <div class="col-sm-8 col-8">
+        <div class="col-sm-8 col-12 text-center text-sm-left">
           <h1 class="mb-3">All products</h1>
           <!-- Buttons -->
-          <nuxt-link to="/admin/products" class="a-button-buy-again">Add a new product</nuxt-link>
-          <nuxt-link to="/admin/category" class="a-button-buy-again mr-2">Add a new category</nuxt-link>
-          <nuxt-link to="/admin/owners" class="a-button-buy-again">Add a new owner</nuxt-link>
+          <nuxt-link to="/" class="a-button-buy-again"
+            >Back to Client Home</nuxt-link
+          >
+          <nuxt-link to="/admin/products" class="a-button-buy-again"
+            >Add a new product</nuxt-link
+          >
+          <nuxt-link to="/admin/category" class="a-button-buy-again"
+            >Add a new category</nuxt-link
+          >
+          <nuxt-link to="/admin/owners" class="a-button-buy-again"
+            >Add a new owner</nuxt-link
+          >
         </div>
       </div>
     </div>
@@ -90,11 +99,14 @@
               </div>
             </b-card> -->
             <b-card
-              v-for="(product, index) in products" :key="product._id"
+              v-for="(product, index) in products"
+              :key="product._id"
               tag="article"
               class="mb-2 history-box p-2"
             >
-              <client-only v-if="product.prodImages && product.prodImages.length !=0">
+              <client-only
+                v-if="product.prodImages && product.prodImages.length != 0"
+              >
                 <carousel v-bind="carouselOptions">
                   <slide v-for="(image, i) in product.prodImages" :key="i">
                     <b-img :src="image.location"></b-img>
@@ -106,7 +118,7 @@
               </div>
               <h3 class="card-title">{{ product.title }}</h3>
               <b-card-text>
-                {{product.description}}
+                {{ product.description }}
               </b-card-text>
               <b-card-text>
                 <a href=""></a>
@@ -116,18 +128,31 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
                 <span class="a-letter-space"></span>
-                <span class="a-color-tertiary a-size-small asin-reviews">(1774)</span>
+                <span class="a-color-tertiary a-size-small asin-reviews"
+                  >(1774)</span
+                >
               </b-card-text>
               <b-card-text>
-                Price: <span class="text-danger">{{product.price}}</span>
+                Price: <span class="text-danger">{{ product.price }}</span>
               </b-card-text>
 
               <div class="float-right">
-                <nuxt-link :to="`admin/products/${product._id}`" variant="primary" class="btn btn-primary">Update</nuxt-link>
-                <b-button href="#" variant="dark" @click.prevent="confirmDeletion(product._id, index, product.title)">Delete</b-button>
+                <nuxt-link
+                  :to="`admin/products/${product._id}`"
+                  variant="primary"
+                  class="btn btn-primary"
+                  >Update</nuxt-link
+                >
+                <b-button
+                  href="#"
+                  variant="dark"
+                  @click.prevent="
+                    confirmDeletion(product._id, index, product.title)
+                  "
+                  >Delete</b-button
+                >
               </div>
             </b-card>
-
           </b-card-group>
         </div>
       </div>
@@ -136,35 +161,36 @@
 </template>
 
 <script>
-import infoToastMixin from '~/mixins/infoToast'
-import deleteConfirmationMixin from '~/mixins/deleteConfirmation'
+import infoToastMixin from "~/mixins/infoToast";
+import deleteConfirmationMixin from "~/mixins/deleteConfirmation";
 // import { Carousel, Slide } from 'vue-carousel';
 
 export default {
-  layout: 'admin',
+  layout: "admin",
   head: {
-    title: 'Home'
+    title: "Home",
   },
+  middleware: "admin",
   // asyncData is fetching data before nuxt page finished loading on the browser
   // It is good for SEO because the data will be loaded first
   async asyncData({ $axios }) {
     // debugger
     try {
-      let response = await $axios.$get('/api/products')
+      let response = await $axios.$get("/api/products");
       // console.log(response.products)
       return {
-        products: response.products
-      }
-    } catch (err) {
-
-    }
+        products: response.products,
+      };
+    } catch (err) {}
   },
   mixins: [infoToastMixin, deleteConfirmationMixin],
   components: {
-    Carousel: () => process.browser ? import('vue-carousel').then(m => m.Carousel) : null,
-    Slide: () => process.browser ? import('vue-carousel').then(m => m.Slide) : null
+    Carousel: () =>
+      process.browser ? import("vue-carousel").then((m) => m.Carousel) : null,
+    Slide: () =>
+      process.browser ? import("vue-carousel").then((m) => m.Slide) : null,
   },
-  data(){
+  data() {
     return {
       slide: 0,
       carouselOptions: {
@@ -174,56 +200,58 @@ export default {
         autoplay: false,
         paginationColor: "#ffb300",
         // autoplayHoverPause: true
-      }
-    }
+      },
+    };
   },
   methods: {
     async onDeleteProduct(id, index, title) {
       try {
         // let productTitle = this.products[index].title
         // debugger
-        let response = await this.$axios.$delete(`/api/products/${id}`)
+        let response = await this.$axios.$delete(`/api/products/${id}`);
         // console.log(response.products)
-        this.makeToast('product', title, 'delete')
-        if(response.status) {
-          this.products.splice(index, 1)
+        this.makeToast("product", title, "delete");
+        if (response.status) {
+          this.products.splice(index, 1);
         }
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-    }
+    },
   },
   transition(to, from) {
     if (!from) {
-      return 'slide-left'
+      return "slide-left";
     }
-    return 'slide-right'
+    return "slide-right";
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
- .card-img-top, .img-wrap .img-fluid, .VueCarousel-slide img {
-   width: 100%;
-   height: 200px;
-   object-fit: contain;
- }
- @media (min-width: 576px) {
-   .card-columns {
-     column-count: 2;
-     column-gap: 1rem;
-   }
- }
- @media (min-width: 992px) {
-   .card-columns {
-     column-count: 3;
-   }
- }
- @media (min-width: 1400px) {
-   .card-columns {
-     column-count: 4;
-   }
- }
+.card-img-top,
+.img-wrap .img-fluid,
+.VueCarousel-slide img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+@media (min-width: 576px) {
+  .card-columns {
+    column-count: 2;
+    column-gap: 1rem;
+  }
+}
+@media (min-width: 992px) {
+  .card-columns {
+    column-count: 3;
+  }
+}
+@media (min-width: 1400px) {
+  .card-columns {
+    column-count: 4;
+  }
+}
 /*  .VueCarousel {
    .VueCarousel-wrapper {
      .VueCarousel-inner{
@@ -238,11 +266,12 @@ export default {
  } */
 </style>
 <style lang="scss">
- .VueCarousel-dot-container {
-   margin-top: 0 !important;
+.VueCarousel-dot-container {
+  margin-top: 0 !important;
   .VueCarousel-dot {
     margin-top: 0 !important;
-    &:focus,&:active {
+    &:focus,
+    &:active {
       outline: none !important;
     }
     &.VueCarousel-dot--active {
@@ -252,16 +281,17 @@ export default {
       background-color: chocolate !important;
     }
   }
- }
- .b-toaster{
-   &.b-toaster-top-right{
-     .b-toaster-slot {
-       min-width: 300px;
-       max-width: 45%;
-       .b-toast, .toast {
-         max-width: unset;
-       }
+}
+.b-toaster {
+  &.b-toaster-top-right {
+    .b-toaster-slot {
+      min-width: 300px;
+      max-width: 45%;
+      .b-toast,
+      .toast {
+        max-width: unset;
       }
-   }
- }
+    }
+  }
+}
 </style>
