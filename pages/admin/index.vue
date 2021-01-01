@@ -154,7 +154,7 @@
                 <b-button
                   variant="dark"
                   @click.prevent="
-                    confirmDeletion($event, product._id, index, product.title)
+                    confirmDeletion(product._id, index, product.title, $event)
                   "
                   >Delete</b-button
                 >

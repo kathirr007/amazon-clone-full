@@ -23,6 +23,7 @@
                     type="email"
                     id="ap_customer_email"
                     v-model="email"
+                    @keyup.enter.stop="onLogin"
                     class="a-input-text form-control auth-atofocus auth-required-field auth-verification-request-info"
                   />
                 </div>
@@ -35,6 +36,7 @@
                     type="password"
                     id="ap_customer_password"
                     v-model="password"
+                    @keyup.enter.stop="onLogin"
                     class="a-input-text form-control auth-atofocus auth-required-field auth-verification-request-info"
                   />
                   <div class="a-alert-container pl-0">

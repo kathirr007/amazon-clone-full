@@ -4,7 +4,7 @@ export default {
   },
   computed: {},
   methods: {
-    confirmDeletion(e, id, index, title) {
+    confirmDeletion(id, index, title, e = null) {
       const authUser = this.$store.getters["authUser"];
       const isAdmin = authUser.admin;
       const h = this.$createElement;
