@@ -13,7 +13,7 @@ export default {
         const vNodesMsg = h("p", { class: ["text-center", "mb-0"] }, [
           h("b-spinner", { props: { type: "grow", small: true } }),
           " Hi ",
-          h("strong", `${this.authUser.name}, `),
+          h("strong", `${authUser.name}, `),
           ` you need to be Admin to do this Action `,
           h("strong", `${e.target.textContent} `),
           h("b-spinner", { props: { type: "grow", small: true } })

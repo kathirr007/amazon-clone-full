@@ -8,20 +8,14 @@
           <nuxt-link to="/" class="a-button-buy-again"
             >Back to Client Home</nuxt-link
           >
-          <span
-            @click="isAdmin($event, '/admin/products')"
-            class="a-button-buy-again"
-            >Add a new product</span
+          <nuxt-link to="/admin/products" class="a-button-buy-again"
+            >Add a new product</nuxt-link
           >
-          <span
-            @click="isAdmin($event, '/admin/category')"
-            class="a-button-buy-again"
-            >Add a new category</span
+          <nuxt-link to="/admin/category" class="a-button-buy-again"
+            >Add a new category</nuxt-link
           >
-          <span
-            @click="isAdmin($event, '/admin/owners')"
-            class="a-button-buy-again"
-            >Add a new owner</span
+          <nuxt-link to="/admin/owners" class="a-button-buy-again"
+            >Add a new owner</nuxt-link
           >
         </div>
       </div>
