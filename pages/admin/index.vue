@@ -168,7 +168,7 @@ import { mapGetters } from "vuex";
 export default {
   layout: "admin",
   head: {
-    title: "Home",
+    title: "Home | Admin",
   },
   // middleware: "loggedIn",
   // asyncData is fetching data before nuxt page finished loading on the browser
