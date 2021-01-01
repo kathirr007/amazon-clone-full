@@ -5497,6 +5497,7 @@ fieldset {
   white-space: nowrap;
   font-weight: 700;
   display: inline-flex;
+  align-items: center;
 }
 
 .a-button-view-item {

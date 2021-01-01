@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/server.js --watch server",
     "build": "nuxt build",
+    "analyze": "nuxt build -a",
     "start": "cross-env NODE_ENV=production node server/server.js",
     "generate": "nuxt generate",
     "test": "PORT=8000 nuxt"
@@ -37,7 +38,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "multer-s3": "^2.9.0",
-    "nuxt": "^2.14.7",
+    "nuxt": "^2.14.12",
     "stripe": "^8.50.0",
     "vue-carousel": "^0.18.0"
   },

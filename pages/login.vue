@@ -105,14 +105,14 @@ export default {
   },
   methods: {
     async onSignup() {
-      debugger;
+      // debugger;
       try {
         let data = {
           name: this.name,
           email: this.email,
           password: this.password,
         };
-        debugger;
+        // debugger;
         let response = await this.$axios.$post("/api/auth/signup", data);
 
         if (response.success) {
@@ -143,14 +143,24 @@ export default {
         // debugger
         let response = await this.$axios.$post("/api/auth/login", data);
         if (response.success) {
-          this.$auth.loginWith("local", {
-            data: {
-              email: this.email,
-              password: this.password,
-            },
-          });
-
-          this.$router.push("/");
+          await this.$auth
+            .loginWith("local", {
+              data: {
+                email: this.email,
+                password: this.password,
+              },
+            })
+            .then((_) => {
+              // debugger;
+              let userName = this.$store.$auth.$state.user.name;
+              this.$root.$bvToast.toast(`Welcome back ${userName}`, {
+                title: `Successfull Login`,
+                variant: "success",
+                autoHideDelay: 2000,
+                solid: true,
+              });
+              this.$router.push("/");
+            });
         } else {
           console.log(response);
           this.$bvToast.toast(`${response.message}`, {
@@ -159,17 +169,6 @@ export default {
             solid: true,
           });
         }
-        /* this.$auth
-          .loginWith("local", {
-            data: {
-              email: this.email,
-              password: this.password,
-            },
-          })
-          .then((_) => {
-            console.log("logged in successfully...");
-            this.$router.push("/");
-          }); */
       } catch (err) {
         console.log(err);
       }

@@ -1,5 +1,11 @@
 # amazon-clone-full
 
+
+> Vue Amazon Clone web application using Vue Fullstack (Vue.js, Nuxt.js, MongoDB, Node.js, Bootstrap-Vue)
+
+
+To check live version please checkout **[here](https://vue-amazon-clone.herokuapp.com/)**
+
 ## Build Setup
 
 ```bash

@@ -142,7 +142,7 @@ export default {
               },
             })
             .then((_) => {
-              this.$root.$bvToast.toast(`Welcome back ${this.name}`, {
+              this.$root.$bvToast.toast(`Welcome ${this.name}`, {
                 title: `Login`,
                 variant: "success",
                 autoHideDelay: 2000,

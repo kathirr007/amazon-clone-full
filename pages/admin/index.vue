@@ -170,7 +170,7 @@ export default {
   head: {
     title: "Home",
   },
-  middleware: "admin",
+  middleware: "loggedIn",
   // asyncData is fetching data before nuxt page finished loading on the browser
   // It is good for SEO because the data will be loaded first
   async asyncData({ $axios }) {
