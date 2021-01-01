@@ -5,11 +5,28 @@ export default {
   computed: {},
   methods: {
     confirmDeletion(id, index, title, e = null) {
+      const isAuthenticated = this.$store.getters["isAuthenticated"];
       const authUser = this.$store.getters["authUser"];
-      const isAdmin = authUser.admin;
+      const isAdmin = authUser !== null ? authUser.admin : false;
       const h = this.$createElement;
       // debugger;
-      if (!isAdmin) {
+      if (!isAuthenticated) {
+        const vNodesMsg = h("p", { class: ["text-center", "mb-0"] }, [
+          h("b-spinner", { props: { type: "grow", small: true } }),
+          " Hi ",
+          h("strong", `Guest`),
+          ` you need to be logged-In with Admin rights to do this Action `,
+          h("strong", `${e.target.textContent} `),
+          h("b-spinner", { props: { type: "grow", small: true } })
+        ]);
+        this.$root.$bvToast.toast([vNodesMsg], {
+          title: `Authentication Error`,
+          variant: "info",
+          solid: true
+          // autoHideDelay: 15000,
+        });
+        this.$router.push("/login");
+      } else if (!isAdmin) {
         const vNodesMsg = h("p", { class: ["text-center", "mb-0"] }, [
           h("b-spinner", { props: { type: "grow", small: true } }),
           " Hi ",
