@@ -21,7 +21,7 @@ export default {
         ]);
         this.$root.$bvToast.toast([vNodesMsg], {
           title: `Authentication Error`,
-          variant: "info",
+          variant: "warning",
           solid: true
           // autoHideDelay: 15000,
         });

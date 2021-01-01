@@ -137,13 +137,11 @@
               </b-card-text>
 
               <div class="float-right">
-                <b-button
-                  @click.prevent="
-                    isAdmin($event, `admin/products/${product._id}`)
-                  "
+                <nuxt-link
+                  :to="`admin/products/${product._id}`"
                   variant="primary"
                   class="btn btn-primary"
-                  >Update</b-button
+                  >Update</nuxt-link
                 >
                 <b-button
                   variant="dark"
