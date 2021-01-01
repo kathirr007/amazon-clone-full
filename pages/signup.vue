@@ -151,7 +151,7 @@ export default {
               this.$router.push("/");
             });
         } else {
-          console.log(response);
+          // console.log(response);
           this.$bvToast.toast(`${response.message}`, {
             title: `Signup Error`,
             variant: "danger",

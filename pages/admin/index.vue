@@ -8,14 +8,20 @@
           <nuxt-link to="/" class="a-button-buy-again"
             >Back to Client Home</nuxt-link
           >
-          <nuxt-link to="/admin/products" class="a-button-buy-again"
-            >Add a new product</nuxt-link
+          <span
+            @click="isAdmin($event, '/admin/products')"
+            class="a-button-buy-again"
+            >Add a new product</span
           >
-          <nuxt-link to="/admin/category" class="a-button-buy-again"
-            >Add a new category</nuxt-link
+          <span
+            @click="isAdmin($event, '/admin/category')"
+            class="a-button-buy-again"
+            >Add a new category</span
           >
-          <nuxt-link to="/admin/owners" class="a-button-buy-again"
-            >Add a new owner</nuxt-link
+          <span
+            @click="isAdmin($event, '/admin/owners')"
+            class="a-button-buy-again"
+            >Add a new owner</span
           >
         </div>
       </div>
@@ -137,17 +143,18 @@
               </b-card-text>
 
               <div class="float-right">
-                <nuxt-link
-                  :to="`admin/products/${product._id}`"
+                <b-button
+                  @click.prevent="
+                    isAdmin($event, `admin/products/${product._id}`)
+                  "
                   variant="primary"
                   class="btn btn-primary"
-                  >Update</nuxt-link
+                  >Update</b-button
                 >
                 <b-button
-                  href="#"
                   variant="dark"
                   @click.prevent="
-                    confirmDeletion(product._id, index, product.title)
+                    confirmDeletion($event, product._id, index, product.title)
                   "
                   >Delete</b-button
                 >
@@ -164,6 +171,7 @@
 import infoToastMixin from "~/mixins/infoToast";
 import deleteConfirmationMixin from "~/mixins/deleteConfirmation";
 // import { Carousel, Slide } from 'vue-carousel';
+import { mapGetters } from "vuex";
 
 export default {
   layout: "admin",
@@ -203,6 +211,9 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters(["authUser"]),
+  },
   methods: {
     async onDeleteProduct(id, index, title) {
       try {
@@ -216,6 +227,29 @@ export default {
         }
       } catch (err) {
         console.log(err);
+      }
+    },
+    isAdmin(e, path) {
+      console.log(e);
+      const isAdmin = this.authUser.admin;
+      const h = this.$createElement;
+      const vNodesMsg = h("p", { class: ["text-center", "mb-0"] }, [
+        h("b-spinner", { props: { type: "grow", small: true } }),
+        " Hi ",
+        h("strong", `${this.authUser.name}, `),
+        ` you need to be Admin to do this Action `,
+        h("strong", `${e.target.textContent} `),
+        h("b-spinner", { props: { type: "grow", small: true } }),
+      ]);
+      if (!isAdmin) {
+        this.$bvToast.toast([vNodesMsg], {
+          title: `Authorization Error`,
+          variant: "danger",
+          solid: true,
+          // autoHideDelay: 15000,
+        });
+      } else {
+        this.$router.push(path);
       }
     },
   },
