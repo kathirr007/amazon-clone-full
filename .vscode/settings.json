@@ -1,6 +1,8 @@
 {
     "cSpell.words": [
         "nuxt",
-        "nuxtjs"
+        "nuxtjs",
+        "persistedstate",
+        "vuex"
     ]
 }
