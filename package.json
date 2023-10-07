@@ -43,8 +43,8 @@
     "vue-carousel": "^0.18.0"
   },
   "devDependencies": {
-    "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
+    "sass": "^1.69.0",
     "sass-loader": "^8.0.2",
     "vue-star-rating": "^1.7.0",
     "vuex-persistedstate": "^4.0.0-beta.1"
