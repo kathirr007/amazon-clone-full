@@ -44,6 +44,7 @@
     "vue-carousel": "^0.18.0"
   },
   "devDependencies": {
+    "node-fetch-native": "^1.4.0",
     "nodemon": "^3.0.1",
     "sass": "^1.69.0",
     "sass-loader": "10.1.1",
