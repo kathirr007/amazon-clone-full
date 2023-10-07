@@ -5,6 +5,9 @@
   "author": "kathirr007",
   "private": true,
   "toDebug": "Add --inspect=7000 --inspect-brk before javascript file to debug node server functions",
+  "engines": {
+    "node": "18.18.0"
+  },
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/server.js --watch server",
     "build": "nuxt build",
