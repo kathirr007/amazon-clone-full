@@ -5,9 +5,6 @@
   "author": "kathirr007",
   "private": true,
   "toDebug": "Add --inspect=7000 --inspect-brk before javascript file to debug node server functions",
-  "engines": {
-    "node": "18.18.0"
-  },
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/server.js --watch server",
     "build": "nuxt build",
@@ -15,7 +12,7 @@
     "start": "cross-env NODE_ENV=production node server/server.js",
     "generate": "nuxt generate",
     "test": "PORT=8000 nuxt",
-    "vercel-build": "yarn global add node-gyp"
+    "vercel-build": "yarn global add node-gyp node-pre-gyp"
   },
   "dependencies": {
     "@nuxtjs/auth": "^4.9.1",
