@@ -44,9 +44,9 @@
     "vue-carousel": "^0.18.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2",
+    "nodemon": "^3.0.1",
     "sass": "^1.69.0",
-    "sass-loader": "^8.0.2",
+    "sass-loader": "10.1.1",
     "vue-star-rating": "^1.7.0",
     "vuex-persistedstate": "^4.0.0-beta.1"
   },
