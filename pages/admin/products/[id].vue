@@ -112,8 +112,11 @@
 <script>
   import infoToastMixin from '~/mixins/infoToast'
   import imgUploadMixin from '~/mixins/imgUpload'
+
+  definePageMeta({ layout: 'admin' })
+
   export default {
-    layout: 'admin',
+    // layout: 'admin',
     async asyncData({ $axios, params }) {
       try {
         let categories = $axios.$get('/api/categories')

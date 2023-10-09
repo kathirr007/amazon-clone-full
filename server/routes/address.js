@@ -1,8 +1,9 @@
-const router = require("express").Router();
-const Address = require("../models/address");
-const User = require("../models/user");
-const verifyToken = require("../middlewares/verify-token");
-const axios = require("axios");
+import express from "express";
+const router = express.Router();
+import Address from "../models/address.js";
+import User from "../models/user.js";
+import verifyToken from "../middlewares/verify-token.js";
+import axios from "axios";
 
 // const upload = require('../middlewares/upload-photo')
 
@@ -165,4 +166,4 @@ router.put("/addresses/set/default", verifyToken, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -5,7 +5,7 @@
         <div class="col-md-6 offset-md-3">
           <h1 class="text-center mt-2">
             <template v-if="authUser !== null">
-              Profile {{ authUser.name | capitalize }}
+              Profile {{ capitalize(authUser.name) }}
             </template>
             <template v-else> Profile </template>
             <small>
@@ -81,7 +81,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState } from "pinia";
+const { capitalize } = useVueFilters();
 export default {
   transition(to, from) {
     if (!from) {
@@ -101,7 +102,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["authUser"]),
+    ...mapState(["authUser"]),
   },
   // middleware: "auth",
   // auth: 'guest',

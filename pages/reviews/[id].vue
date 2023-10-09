@@ -14,7 +14,7 @@
               <div class="row">
                 <!-- Product Photo -->
                 <div class="col-md-2 col-sm-3 col-3">
-                  <img :src="product.photo" style="width: 80px" />
+                  <img :src="product.photo" style="width: 80px" alt="" />
                 </div>
                 <!-- Product Title -->
                 <div class="col-md-10 col-sm-9 col-9 m-auto">
@@ -74,7 +74,7 @@
               >This is how you'll appear to other customers:</p>
               <div class="media">
                 <div class="media-left">
-                  <img src="/img/avatar.png" class="img-fluid" style="width: 50px;" />
+                  <img src="/img/avatar.png" class="img-fluid" style="width: 50px;" alt="" />
                 </div>
                 <div class="media-body pl-3 pt-2">
                   <input type="text" class="a-input-text" :value="$auth.$state.user.name" style="width: 100%;" />

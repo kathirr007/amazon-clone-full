@@ -1,4 +1,4 @@
-module.exports = {
+export default defineNuxtConfig({
   /*
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode
@@ -112,8 +112,6 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {},
-    babel: { compact: true }
   },
   auth: {
     strategies: {
@@ -128,4 +126,6 @@ module.exports = {
       }
     }
   }
-};
+})
+
+// module.exports =

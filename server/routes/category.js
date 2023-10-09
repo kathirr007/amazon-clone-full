@@ -1,5 +1,6 @@
-const router = require('express').Router()
-const Category = require('../models/category')
+import express from "express";
+const router = express.Router();
+import  Category from '../models/category.js'
 
 // const upload = require('../middlewares/upload-photo')
 
@@ -64,4 +65,4 @@ router.delete('/categories/:id', async(req,res) => {
   }
 })
 
-module.exports = router
+export default router

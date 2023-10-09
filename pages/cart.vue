@@ -238,7 +238,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState } from "pinia";
 export default {
   transition(to, from) {
     if (!from) {
@@ -257,7 +257,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getCart", "getCartTotalPrice", "getCartLength"]),
+    ...mapState(["getCart", "getCartTotalPrice", "getCartLength"]),
   },
   methods: {
     onChangeQuantity(event, product) {

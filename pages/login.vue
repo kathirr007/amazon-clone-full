@@ -83,8 +83,9 @@
 </template>
 
 <script>
+definePageMeta({ layout: 'admin' })
 export default {
-  layout: "admin",
+  // layout: "admin",
   transition(to, from) {
     if (!from) {
       return "slide-left";

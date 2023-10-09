@@ -1,8 +1,9 @@
-const router = require('express').Router()
-const Review = require('../models/review')
-const Product = require('../models/product')
-const verifyToken = require('../middlewares/verify-token')
-const {upload} = require('../middlewares/upload-photo')
+import express from 'express'
+const router = express.Router();
+import Review from '../models/review.js'
+import Product from '../models/product.js'
+import verifyToken from '../middlewares/verify-token.js'
+import {upload} from '../middlewares/upload-photo.js'
 
 router.post('/reviews/:productID', [verifyToken, upload.single('photo')], async(req, res) => {
     try {
@@ -35,22 +36,25 @@ router.post('/reviews/:productID', [verifyToken, upload.single('photo')], async(
 
 router.get('/reviews/:productID', async(req,res) => {
     try {
-        const productRewviews = await Review.find({
+        const productReviews = await Review.find({
             productID: req.params.productID
         })
         .populate('user')
-        .exec()
+        .then((reviews) => reviews)
+        .catch((err) => {
+          console.log(err);
+        });
 
         res.json({
             success: true,
-            reviews: productRewviews
+            reviews: productReviews
         })
     } catch(err) {
         res.status(500).json({
             success: false,
             message: err.message
-        })        
+        })
     }
 })
 
-module.exports = router
+export default router

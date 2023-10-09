@@ -424,7 +424,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState } from "pinia";
 
 export default {
   transition(to, from) {
@@ -467,7 +467,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters([
+    ...mapState([
       "authUser",
       "getCart",
       "getCartTotalPrice",

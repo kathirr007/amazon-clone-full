@@ -1,6 +1,7 @@
-const router = require('express').Router()
-const Order = require('../models/order')
-const verifyToken = require('../middlewares/verify-token')
+import express from 'express'
+const router = express.Router();
+import Order from '../models/order.js'
+import verifyToken from '../middlewares/verify-token.js'
 
 // const upload = require('../middlewares/upload-photo')
 
@@ -10,7 +11,11 @@ const verifyToken = require('../middlewares/verify-token')
 // GET request - get orders
 router.get('/orders', verifyToken, async(req,res) => {
     try {
-        let products = await Order.find({ owner: req.decoded._id }).deepPopulate('owner products.productID.owner').exec()
+        let products = await Order.find({ owner: req.decoded._id }).deepPopulate('owner products.productID.owner')
+        .then((products) => products)
+        .catch((err) => {
+          console.log(err);
+        });
         res.json({
             success: true,
             products: products
@@ -29,4 +34,4 @@ router.get('/orders', verifyToken, async(req,res) => {
 
 // DELETE request - delete a single product
 
-module.exports = router
+export default router

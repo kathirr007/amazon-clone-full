@@ -123,7 +123,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState } from "pinia";
 import Search from "~/components/Search";
 
 export default {
@@ -136,7 +136,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["getCartLength", "isAuthenticated", "authUser"]),
+    ...mapState(["getCartLength", "isAuthenticated", "authUser"]),
   }
 };
 </script>

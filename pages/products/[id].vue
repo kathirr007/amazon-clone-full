@@ -430,7 +430,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from 'pinia'
 import ReviewSection from "~/components/ReviewSection";
 // import StarRating from 'vue-star-rating'
 

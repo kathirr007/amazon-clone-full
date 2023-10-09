@@ -1,5 +1,6 @@
-const router = require('express').Router()
-const algoliaSearch = require('algoliasearch')
+import express from 'express'
+const router = express.Router();
+import algoliaSearch from 'algoliasearch'
 
 const client = algoliaSearch(
     process.env.ALGOLIA_APP_ID,
@@ -12,7 +13,10 @@ const client = algoliaSearch(
       let products = await Product.find()
         .populate('owner category')
         .populate('reviews', 'rating')
-        .exec()
+        .then((products) => products)
+        .catch((err) => {
+          console.log(err);
+        });
       res.json({
         success: true,
         products: products
@@ -43,16 +47,16 @@ router.post('/search', async (req,res) => {
           hitsPerPage: 3
         }
       }];
-      
-      
+
+
     try {
         let result = await index.search(req.body.title)
         /* let results = await client.multipleQueries(queries).then(({ results }) => {
             console.log(results);
           }); */
-        
+
         res.json(result.hits)
-        
+
     } catch(err) {
         res.json({
             success: false,
@@ -71,4 +75,4 @@ router.post('/search', async (req,res) => {
 
 // DELETE request - delete a single product
 
-module.exports = router
+export default router

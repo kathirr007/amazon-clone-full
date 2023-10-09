@@ -99,9 +99,12 @@
 import infoToastMixin from "~/mixins/infoToast";
 import imgUploadMixin from "~/mixins/imgUpload";
 import deleteConfirmationMixin from "~/mixins/deleteConfirmation";
-// import { mapGetters } from "vuex";
+// import { mapState } from "pinia";
+
+definePageMeta({ layout: 'admin' })
+
 export default {
-  layout: "admin",
+  // layout: "admin",
   transition(to, from) {
     if (!from) {
       return "slide-left";
@@ -132,7 +135,7 @@ export default {
     };
   },
   /* computed: {
-    ...mapGetters(["authUser"]),
+    ...mapState(["authUser"]),
   }, */
   methods: {
     onFileSelected(fileList) {

@@ -121,7 +121,7 @@
                 {{ product.description }}
               </b-card-text>
               <b-card-text>
-                <a href=""></a>
+                <a href="" aria-label="placeholder link"></a>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
@@ -163,10 +163,12 @@
 import infoToastMixin from "~/mixins/infoToast";
 import deleteConfirmationMixin from "~/mixins/deleteConfirmation";
 // import { Carousel, Slide } from 'vue-carousel';
-import { mapGetters } from "vuex";
+import { mapState } from "pinia";
+
+definePageMeta({ layout: 'admin' })
 
 export default {
-  layout: "admin",
+  // layout: "admin",
   head: {
     title: "Home | Admin",
   },
@@ -204,7 +206,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["authUser"]),
+    ...mapState(["authUser"]),
   },
   methods: {
     async onDeleteProduct(id, index, title) {

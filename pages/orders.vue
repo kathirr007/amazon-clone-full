@@ -190,7 +190,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState } from "pinia";
 export default {
   middleware: "loggedIn",
   // auth: 'guest',
@@ -208,7 +208,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["authUser"]),
+    ...mapState(["authUser"]),
   },
 };
 </script>

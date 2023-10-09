@@ -1,5 +1,5 @@
 const express = require('express');
-const config = require('../nuxt.config.js')
+const config = require('../nuxt.config.ts')
 const { Nuxt, Builder } = require('nuxt')
 
 // dotenv.config()

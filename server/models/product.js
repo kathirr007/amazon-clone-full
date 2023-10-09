@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 const Schema = mongoose.Schema
-const mongooseAlgolia = require('mongoose-algolia')
+import mongooseAlgolia from 'mongoose-algolia'
 
 const ProductSchema = new Schema({
     category: { type: Schema.Types.ObjectId, ref: 'Category'},
@@ -20,7 +20,7 @@ const ProductSchema = new Schema({
 ProductSchema.virtual('averageRating').get(function() {
     if(this.reviews.length > 0) {
         let sum = this.reviews.reduce((total, review) => {
-            return total + review.rating  
+            return total + review.rating
         }, 0)
         return sum / this.reviews.length
     }
@@ -46,4 +46,4 @@ Model.SetAlgoliaSettings({
     searchableAttributes: ['title', 'category', 'averageRating', 'price']
 })
 
-module.exports = Model
+export default Model

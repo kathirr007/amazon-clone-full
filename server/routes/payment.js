@@ -1,10 +1,13 @@
-const router = require("express").Router();
+import express from "express";
+const router = express.Router();
 // const moment = require("moment");
 import { add, format } from "date-fns";
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const verifyToken = require("../middlewares/verify-token");
-const User = require("../models/user");
-const Order = require("../models/order");
+import stripe from "stripe";
+import verifyToken from "../middlewares/verify-token.js";
+import User from "../models/user.js";
+import Order from "../models/order.js";
+
+stripe(process.env.STRIPE_SECRET_KEY);
 
 const SHIPMENT = {
   normal: {
@@ -55,8 +58,10 @@ router.post("/payment", verifyToken, async (req, res) => {
   let totalPrice = Math.round(req.body.totalPrice * 100);
   let foundUser = await User.findOne({ _id: req.decoded._id })
     .populate("address")
-    .exec();
-  debugger;
+    .then((user) => user)
+    .catch((err) => {
+      console.log(err);
+    });
   // console.log(foundUser)
   stripe.customers
     .create({
@@ -141,4 +146,4 @@ router.get("/categories", async (req, res) => {
 
 // DELETE request - delete a single product
 
-module.exports = router;
+export default router;

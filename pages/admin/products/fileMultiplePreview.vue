@@ -25,8 +25,9 @@
 </template>
 
 <script>
+  definePageMeta({ layout: 'admin' })
   export default {
-    layout: 'admin',
+    // layout: 'admin',
     /*
       Defines the data used by the component
     */

@@ -67,9 +67,12 @@
 <script>
 import infoToastMixin from "~/mixins/infoToast";
 import deleteConfirmationMixin from "~/mixins/deleteConfirmation";
-import { mapGetters } from "vuex";
+import { mapState } from "pinia";
+
+definePageMeta({ layout: 'admin' })
+
 export default {
-  layout: "admin",
+  // layout: "admin",
   head: {
     title: "Add a new category",
   },
@@ -92,7 +95,7 @@ export default {
     };
   },
   comoputed: {
-    ...mapGetters(["authUser"]),
+    ...mapState(["authUser"]),
   },
   methods: {
     resetCategoryForm() {

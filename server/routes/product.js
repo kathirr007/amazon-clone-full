@@ -1,7 +1,8 @@
-const router = require('express').Router()
-const Product = require('../models/product')
+import express from 'express'
+const router = express.Router();
+import Product from '../models/product.js'
 
-const {upload} = require('../middlewares/upload-photo')
+import {upload} from '../middlewares/upload-photo.js'
 
 // POST request - create a new product
 router.post('/products', upload.array('prodImages', 3), async (req, res) => {
@@ -57,7 +58,10 @@ router.get('/products', async(req,res) => {
         let products = await Product.find()
             .populate('owner category')
             .populate('reviews', 'rating')
-            .exec()
+            .then((products) => products)
+            .catch((err) => {
+              console.log(err);
+            });
         res.json({
             success: true,
             products: products
@@ -77,7 +81,10 @@ router.get('/products/:id', async(req,res) => {
         let product = await Product.findOne({ _id: req.params.id })
             .populate('owner category')
             .populate('reviews', 'rating')
-            .exec()
+            .then((product) => product)
+            .catch((err) => {
+              console.log(err);
+            });
         res.json({
             success: true,
             product: product
@@ -151,4 +158,4 @@ router.delete('/products/:id', async(req,res) => {
 })
 
 
-module.exports = router
+export default router

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const ReviewSchema = new Schema({
@@ -10,4 +10,4 @@ const ReviewSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User'},
 })
 
-module.exports = mongoose.model('Review', ReviewSchema)
+export default mongoose.model('Review', ReviewSchema)

@@ -20,8 +20,9 @@
 </template>
 
 <script>
+  definePageMeta({ layout: 'admin' })
   export default {
-    layout: 'admin',
+    // layout: 'admin',
     data() {
       return {
         images: {},

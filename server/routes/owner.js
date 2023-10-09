@@ -1,7 +1,7 @@
-const router = require('express').Router()
-const Owner = require('../models/owner')
-
-const {upload} = require('../middlewares/upload-photo')
+import express from 'express'
+const router = express.Router();
+import  Owner from '../models/owner.js'
+import {upload} from '../middlewares/upload-photo.js'
 
 // POST request - create a new owner
 router.post('/owners', upload.single('photo'), async (req, res) => {
@@ -109,4 +109,4 @@ router.delete('/owners/:id', async(req,res) => {
     }
 })
 
-module.exports = router
+export default router

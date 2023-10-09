@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const AddressSchema = new Schema({
@@ -14,4 +14,4 @@ const AddressSchema = new Schema({
     securityCode: String,
 })
 
-module.exports = mongoose.model('Address', AddressSchema)
+export default mongoose.model('Address', AddressSchema)

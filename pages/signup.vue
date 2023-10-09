@@ -94,8 +94,11 @@
 
 <script>
 import infoToastMixin from "~/mixins/infoToast";
+
+definePageMeta({ layout: 'admin' })
+
 export default {
-  layout: "admin",
+  // layout: "admin",
   transition(to, from) {
     if (!from) {
       return "slide-left";

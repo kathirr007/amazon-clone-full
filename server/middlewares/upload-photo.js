@@ -1,13 +1,14 @@
-const aws = require("aws-sdk");
-const multer = require("multer");
-const multerS3 = require("multer-s3");
+import aws from "aws-sdk";
+import { S3 } from "@aws-sdk/client-s3";
+import multer from "multer";
+import multerS3 from "multer-s3";
 
 aws.config.update({
   secretAccessKey: process.env.AWSSecretKey,
   accessKeyId: process.env.AWSAccessKeyId
 });
 
-const s3 = new aws.S3();
+const s3 = new S3();
 // debugger
 const upload = multer({
   storage: multerS3({
@@ -39,4 +40,4 @@ const multiUpload = multer({
   })
 });
 
-module.exports = { upload, multiUpload };
+export { upload, multiUpload };

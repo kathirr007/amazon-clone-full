@@ -84,7 +84,8 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapState } from 'pinia'
+
   export default {
     transition(to, from) {
       if (!from) {
@@ -105,7 +106,7 @@ import {mapGetters} from 'vuex'
       }
     },
     computed: {
-      ...mapGetters(['getCart', 'getCartTotalPriceWithShipping', 'getEstimatedDelivery'])
+      ...mapState(['getCart', 'getCartTotalPriceWithShipping', 'getEstimatedDelivery'])
     },
     mounted() {
       this.stripe = Stripe('pk_test_krAf3HsWv3GLs5EXlXXRpv1O00IWashr2l')
