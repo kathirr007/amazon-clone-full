@@ -4,5 +4,12 @@
         "nuxtjs",
         "persistedstate",
         "vuex"
-    ]
+    ],
+    "prettier.enable": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+
+    "editor.formatOnSave": true,
+    "files.eol": "\n"
 }
