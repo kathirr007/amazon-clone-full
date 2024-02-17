@@ -71,7 +71,9 @@ router.get("/addresses/:id", verifyToken, async (req, res) => {
 // GET Countries from third-party API https://restcountries.eu/
 router.get("/countries", async (req, res) => {
   try {
-    let response = await axios.get("https://restcountries.eu/rest/v2/all");
+    const countriesUrl = `https://countryapi.io/api/all?apikey=${process.env.COUNTRY_API_KEY}`
+    // let response = await axios.get("https://restcountries.eu/rest/v2/all");
+    let response = await axios.get(countriesUrl);
 
     res.json(response.data);
   } catch (err) {

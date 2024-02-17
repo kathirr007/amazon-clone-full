@@ -15,7 +15,7 @@
                       <span>Your Account</span>
                     </a>
                   </li>
-                  <li class="a-breadcrumb-divider">›</li>
+                  <li class="a-breadcrumb-divider">&#10095;</li>
                   <li class="active">
                     <a href="#">
                       <span>Your Adresses</span>

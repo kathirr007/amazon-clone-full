@@ -5,6 +5,9 @@
         <!-- <div class="col-sm-3"></div> -->
         <div class="col-md-6 offset-md-3">
           <h1 class="text-center mt-2">Add a New Product Form</h1>
+          <nuxt-link to="/admin" type="button" class="btn mb-3 btn-outline-danger">
+            Go Back
+          </nuxt-link>
           <!-- <b-form @submit="onSubmit" @reset="onReset" v-if="show"> -->
           <b-form ref="productForm">
             <!-- Category Selection dropdown -->

@@ -5,7 +5,7 @@
         <div class="col-md-6 offset-md-3">
           <h1 class="text-center mt-2">
             <template v-if="authUser !== null">
-              Profile {{ authUser.name | capitalize }}
+              Profile {{ authUser?.name | capitalize }}
             </template>
             <template v-else> Profile </template>
             <small>
@@ -27,7 +27,7 @@
                 type="text"
                 :placeholder="
                   authUser !== null
-                    ? authUser.name
+                    ? authUser?.name
                     : 'Please enter new name here'
                 "
               ></b-form-input>
@@ -44,7 +44,7 @@
                 type="email"
                 :placeholder="
                   authUser !== null
-                    ? authUser.email
+                    ? authUser?.email
                     : 'Please enter new email here'
                 "
               ></b-form-input>
@@ -62,7 +62,7 @@
 
             <b-row>
               <b-col class="mt-4">
-                <span class="a-button-register">
+                <span class="a-button-register"  :class="{'pointer-events-none': isFormEmpty}">
                   <span class="a-button-inner">
                     <span class="a-button-text" @click="onUpdateProfile"
                       >Update Profile</span
@@ -102,6 +102,9 @@ export default {
   },
   computed: {
     ...mapGetters(["authUser"]),
+    isFormEmpty: function() {
+      return this.name === '' && this.email === '' && this.password === ''
+    }
   },
   // middleware: "auth",
   // auth: 'guest',
@@ -109,8 +112,8 @@ export default {
     async onUpdateProfile() {
       // debugger
       let data = {
-        name: this.name != "" ? this.name : this.$auth.$state.user.name,
-        email: this.email != "" ? this.email : this.$auth.$state.user.email,
+        name: this.name != "" ? this.name : this.$auth.$state.user?.name,
+        email: this.email != "" ? this.email : this.$auth.$state.user?.email,
         password:
           this.password != "" ? this.password : this.$auth.$state.user.password,
       };

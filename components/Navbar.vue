@@ -27,10 +27,10 @@
                 <div id="glow-ingress-block">
                   <span class="nav-line-1" id="glow-ingress-line1">Deliver to</span>
                   <span
-                    v-if="$auth.$state.user !== null && $auth.$state.user.address !== undefined"
+                    v-if="$auth.$state.user !== null && $auth.$state.user?.address !== undefined"
                     class="nav-line-2"
                     id="glow-ingress-line2"
-                  >{{$auth.$state.user.address.city}}</span>
+                  >{{$auth.$state.user?.address.city}}</span>
                   <span v-else class="nav-line-2" id="glow-ingress-line2">India</span>
                 </div>
               </nuxt-link>

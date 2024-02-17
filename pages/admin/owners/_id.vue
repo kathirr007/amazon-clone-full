@@ -7,6 +7,9 @@
           <h1 class="text-center mt-2">
             Update {{ owner.name }}
           </h1>
+          <nuxt-link to="/admin/owners" type="button" class="btn mb-3 btn-outline-danger">
+            Go Back
+          </nuxt-link>
           <!-- <b-form @submit="onSubmit" @reset="onReset" v-if="show"> -->
           <b-form ref="productForm">
             <!-- Owner name -->

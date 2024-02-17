@@ -17,7 +17,7 @@
                   </a>
                 </span>
               </li>
-              <li class="a-breadcrumb-divider">›</li>
+              <li class="a-breadcrumb-divider">&#10095;</li>
               <li>
                 <span class="a-list-item">
                   <span class="a-color-state">Your Orders</span>

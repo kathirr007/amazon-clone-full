@@ -11,17 +11,15 @@
               <div class="a-subheader a-breadcrumb a-spacing-small">
                 <ul>
                   <li>
-                    <a href="#">
-                      <span>Your Account</span>
-                    </a>
+                    <span>Your Account</span>
                   </li>
-                  <li class="a-breadcrumb-divider">›</li>
+                  <li class="a-breadcrumb-divider">&#10095;</li>
                   <li>
-                    <a href="#">
+                    <nuxt-link to="/address">
                       <span>Your Adresses</span>
-                    </a>
+                    </nuxt-link>
                   </li>
-                  <li class="a-breadcrumb-divider">›</li>
+                  <li class="a-breadcrumb-divider">&#10095;</li>
                   <li class="active">
                     <a href="#">
                       <span>New Address</span>

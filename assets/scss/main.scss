@@ -3,6 +3,10 @@
   display: flex;
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 @-moz-keyframes loader {
   from {
     transform: rotate(0);

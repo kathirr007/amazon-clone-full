@@ -11,20 +11,18 @@
               <div class="a-subheader a-breadcrumb a-spacing-small">
                 <ul>
                   <li>
-                    <a href="#">
-                      <span>Your Account</span>
-                    </a>
+                    <span>Your Account</span>
                   </li>
-                  <li class="a-breadcrumb-divider">›</li>
+                  <li class="a-breadcrumb-divider">&#10095;</li>
                   <li>
-                    <a href="#">
+                    <nuxt-link to="/address">
                       <span>Your Adresses</span>
-                    </a>
+                    </nuxt-link>
                   </li>
-                  <li class="a-breadcrumb-divider">›</li>
+                  <li class="a-breadcrumb-divider">&#10095;</li>
                   <li class="active">
                     <a href="#">
-                      <span>New Address</span>
+                      {{ address.fullName }}
                     </a>
                   </li>
                 </ul>
@@ -49,7 +47,7 @@
                   <!-- Country / Region -->
                   <div class="a-spacing-top-medium">
                     <label class="mb-2" for="selectCountry">Country/Region</label>
-                    <b-form-select v-model="country" id="selectCountry" labelField="Country/Region">
+                    <b-form-select v-model="address.country" id="selectCountry" labelField="Country/Region">
                       <b-form-select-option
                         v-for="country in countries"
                         :key="country.alpha2Code"
@@ -71,7 +69,7 @@
                       <b-form-input class="mb-2" id="streetAddress" v-model="address.streetAddress" type="text">
                       </b-form-input>
                       <!-- Street Address 2 -->
-                      <b-form-input v-model="streetAddress2" type="text">
+                      <b-form-input v-model="address.streetAddress2" type="text">
                       </b-form-input>
                     </b-form-group>
 
@@ -188,7 +186,8 @@ export default {
   },
   async asyncData({ $axios, params }) {
     try {
-      let response = await $axios.$get('/api/countries')
+      // const countriesUrl = `https://countryapi.io/api/all?apikey=${process.env.COUNTRY_API_KEY}`
+      let response = await $axios.$get(`/api/countries`)
       let singleAddress = await $axios.$get(`/api/addresses/${params.id}`)
 
       let [countriesResponse, addressResponse] = await Promise.all([
@@ -207,16 +206,18 @@ export default {
   mixins: [infoToastMixin],
   data() {
     return {
-      country: 'India',
-      fullName: '',
-      streetAddress1: '',
-      streetAddress2: '',
-      city: '',
-      state: '',
-      zipCode: '',
-      phoneNumber: '',
-      deliveryInstructions: '',
-      securityCode: '',
+      address: {
+        country: 'India',
+        fullName: '',
+        streetAddress1: '',
+        streetAddress2: '',
+        city: '',
+        state: '',
+        zipCode: '',
+        phoneNumber: '',
+        deliveryInstructions: '',
+        securityCode: '',
+      }
     }
   },
   methods: {

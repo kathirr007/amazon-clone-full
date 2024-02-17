@@ -5081,7 +5081,7 @@ fieldset {
   border-color: #a88734 #9c7e31 #846a29;
 }
 
-.a-button-register:hover .a-button-inner {
+.a-button-register:hover:not(.pointer-events-none) .a-button-inner {
   background: #f1c861;
   background: -webkit-linear-gradient(top, #f5d78e, #eeb933);
   background: linear-gradient(to bottom, #f5d78e, #eeb933);
