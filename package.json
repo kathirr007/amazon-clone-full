@@ -12,7 +12,7 @@
     "start": "cross-env NODE_ENV=production node server/server.js",
     "generate": "nuxt generate",
     "test": "PORT=8000 nuxt",
-    "vercel-build": "yarn global add node-gyp node-pre-gyp"
+    "vercel-build": "yarn global add node-gyp node-pre-gyp node-gyp-build"
   },
   "dependencies": {
     "@nuxtjs/auth": "^4.9.1",
