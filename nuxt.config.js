@@ -72,11 +72,7 @@ module.exports = {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [],
-  /*
-   ** Nuxt.js modules
-   */
-  modules: [
+  buildModules: [
     // Doc: https://bootstrap-vue.js.org
     "bootstrap-vue/nuxt",
     // Doc: https://axios.nuxtjs.org/usage
@@ -88,6 +84,12 @@ module.exports = {
     "@nuxtjs/auth"
     // Doc: https://github.com/nuxt-community/proxy-module
     // '@nuxtjs/proxy',
+  ],
+  /*
+   ** Nuxt.js modules
+   */
+  modules: [
+
   ],
   /*
    ** Axios module configuration
