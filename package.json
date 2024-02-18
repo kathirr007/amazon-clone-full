@@ -1,11 +1,8 @@
 {
-  "name": "amazon-clone-full",
-  "version": "1.0.0",
-  "description": "Amazon clone project using Vue.js, Nuxt.js, MongoDb, Stripe, Algolia, and AWS",
-  "author": "kathirr007",
-  "private": true,
-  "toDebug": "Add --inspect=7000 --inspect-brk before javascript file to debug node server functions",
   "scripts": {
+    "edgio:dev": "edgio dev",
+    "edgio:build": "edgio build",
+    "edgio:deploy": "edgio deploy",
     "dev": "cross-env NODE_ENV=development nodemon server/server.js --watch server",
     "build": "nuxt build",
     "analyze": "nuxt build -a",
@@ -14,11 +11,34 @@
     "test": "PORT=8000 nuxt",
     "vercel-build-old": "yarn global add node-gyp node-pre-gyp node-gyp-build"
   },
+  "name": "amazon-clone-full",
+  "version": "1.0.0",
+  "description": "Amazon clone project using Vue.js, Nuxt.js, MongoDb, Stripe, Algolia, and AWS",
+  "author": "kathirr007",
+  "private": true,
+  "toDebug": "Add --inspect=7000 --inspect-brk before javascript file to debug node server functions",
   "dependencies": {
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.12.0",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.2.2",
+    "@nuxt/core": "^2.14.12"
+  },
+  "devDependencies": {
+    "@edgio/cli": "^7.8.0",
+    "@edgio/core": "^7.8.0",
+    "@edgio/nuxt": "^7.8.0",
+    "@edgio/prefetch": "^7.8.0",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose-algolia": "^1.10.1",
+    "mongoose-deep-populate": "^3.1.1",
+    "node-fetch-native": "^1.4.0",
+    "nodemon": "^3.0.1",
+    "sass": "^1.69.0",
+    "sass-loader": "10.1.1",
+    "vue-star-rating": "^1.7.0",
+    "vuex-persistedstate": "^4.0.0-beta.1",
     "algoliasearch": "^4.2.0",
     "aws-sdk": "^2.666.0",
     "axios": "^0.19.2",
@@ -38,18 +58,6 @@
     "nuxt": "^2.14.12",
     "stripe": "^8.50.0",
     "vue-carousel": "^0.18.0"
-  },
-  "devDependencies": {
-    "dotenv": "^8.2.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose-algolia": "^1.10.1",
-    "mongoose-deep-populate": "^3.1.1",
-    "node-fetch-native": "^1.4.0",
-    "nodemon": "^3.0.1",
-    "sass": "^1.69.0",
-    "sass-loader": "10.1.1",
-    "vue-star-rating": "^1.7.0",
-    "vuex-persistedstate": "^4.0.0-beta.1"
   },
   "resolutions": {}
 }
