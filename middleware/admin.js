@@ -1,4 +1,4 @@
-export default function({ store, redirect }) {
+/* export default function({ store, redirect }) {
   const isLoggedIn = store.state.auth.loggedIn;
   const isAdmin = store.state.auth.user.admin;
 
@@ -6,4 +6,13 @@ export default function({ store, redirect }) {
     // return redirect('/')
     return redirect("/notAuthorized");
   }
-}
+} */
+
+export default defineNuxtRouteMiddleware((to, from) => {
+  const auth = useState('auth')
+  const isLoggedIn = auth.value.loggedIn;
+  const isAdmin = auth.value.user.admin;
+  if (isLoggedIn && !isAdmin) {
+    return navigateTo('/notAuthorized')
+  }
+})

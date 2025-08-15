@@ -18,10 +18,10 @@ const app = express()
 
 // debugger
 mongoose.connect(process.env.DATABASEURI, err => {
-  if(err) {
-      console.log(err)
+  if (err) {
+    console.log(err)
   } else {
-      console.log('Connected to the database')
+    console.log('Connected to the database')
   }
 })
 
@@ -40,7 +40,7 @@ const reviewRoutes = require('./review')
 const addressRoutes = require('./address')
 const paymentRoutes = require('./payment')
 const orderRoutes = require('./order')
-const searchRoutes = require('./search')
+const searchRoutes = require('./search').default
 
 app.use(productRoutes)
 app.use(categoryRoutes)
